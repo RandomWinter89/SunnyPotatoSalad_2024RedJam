@@ -9,7 +9,7 @@ public class CharacterGrowth : MonoBehaviour
     [SerializeField] CharacterGrowthDataSO characterGrowthDataSO;
     [SerializeField, NaughtyAttributes.ReadOnly] private int growthStage = 0;
     [SerializeField, NaughtyAttributes.ReadOnly, NaughtyAttributes.ProgressBar(1f)] private float growthPercentage;
-    private List<CharacterGrowthItem> collectedGrowthItems = new();
+    [SerializeField, NaughtyAttributes.ReadOnly] private List<CharacterGrowthItem> collectedGrowthItems = new();
 
     public System.Action<GrowthStageData> OnGrowthStageUpdated;
 
@@ -32,11 +32,56 @@ public class CharacterGrowth : MonoBehaviour
         {
             growthStage++;
             UpdateGrowth(growthStage);
+            growthPercentage = 0f;
         }
 
         // for use when character touched a border an drops the items
         collectedGrowthItems.Add(growthItem);
     }
+
+    #region Decrease Growth
+    [NaughtyAttributes.Button]
+    private void TestDrop()
+    {
+        DecreaseGrowth(.5f);
+    }
+
+    public void DecreaseGrowth(float amount)
+    {
+        growthPercentage -= amount;
+        growthPercentage = Mathf.Clamp01(growthPercentage);
+
+        // drop items
+        for(int i = 0; i < 3; i++)
+        {
+            if(TryGetRandomGrowthItemInList(out CharacterGrowthItem growthItem))
+            {
+                Drop(growthItem);
+            }
+        }
+    }
+
+    private void Drop(CharacterGrowthItem growthItem)
+    {
+        growthItem.Drop(transform.position);
+        collectedGrowthItems.Remove(growthItem);
+    }
+
+    private bool TryGetRandomGrowthItemInList(out CharacterGrowthItem growthItem)
+    {
+        if(collectedGrowthItems.Count == 0)
+        {
+            growthItem = null;
+            return false;
+        }
+
+        int index = Random.Range(0, collectedGrowthItems.Count);
+        growthItem = collectedGrowthItems[index];
+        return true;
+    }
+
+
+    #endregion
 
     private void UpdateGrowth(int growthStage)
     {
