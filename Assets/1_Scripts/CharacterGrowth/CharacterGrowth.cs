@@ -6,9 +6,10 @@ using UnityEngine;
 
 public class CharacterGrowth : MonoBehaviour
 {
-    public int growthStage;
-    public float growthPercentage;
-    public CharacterGrowthDataSO characterGrowthDataSO;
+    [SerializeField] CharacterGrowthDataSO characterGrowthDataSO;
+    [SerializeField, NaughtyAttributes.ReadOnly] private int growthStage;
+    [SerializeField, NaughtyAttributes.ReadOnly, NaughtyAttributes.ProgressBar(1f)] private float growthPercentage;
+
 
     public void IncreaseGrowth(float amount)
     {
@@ -30,7 +31,11 @@ public class CharacterGrowth : MonoBehaviour
         // Update Speed
         // Update Scale
         // Update Camera Zoom
+    }
 
-
+    private void SetGrowthStage(int growthStage)
+    {
+        this.growthStage = growthStage;
+        UpdateGrowth(growthStage);
     }
 }
