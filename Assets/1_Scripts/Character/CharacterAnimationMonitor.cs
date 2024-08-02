@@ -6,17 +6,15 @@ using AYellowpaper.SerializedCollections;
 
 public class CharacterAnimationMonitor : MonoBehaviour
 {
-   // [SerializeField] private Animator anim;
+    [SerializeField] private Animator anim;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField, NaughtyAttributes.ReadOnly] private SerializedDictionary<Directions, SpriteSeries> sprites = new();
+    [SerializeField, NaughtyAttributes.ReadOnly] private SerializedDictionary<Directions, AnimationClipData> animationClipDatas = new();
 
-    private Sprite prevSprite;
+    private AnimationClipData _prevAnimationClipData = null;
 
-    private SpriteSeries currentSpriteSeries = null;
-
-    public void UpdateSprites(SerializedDictionary<Directions, SpriteSeries> sprites )
+    public void UpdateSprites(SerializedDictionary<Directions, AnimationClipData> animationClipDatas)
     {
-        this.sprites = sprites;
+        this.animationClipDatas = animationClipDatas;
 
     }
 
@@ -29,52 +27,51 @@ public class CharacterAnimationMonitor : MonoBehaviour
         UpdateAnimation(input);
     }
 
-
     private void UpdateAnimation(Vector2 input)
     {
-        // determine sprite to use based on input direction
+        // Determine sprite to use based on input direction
 
         if (input == Vector2.zero)
         {
-            if (prevSprite == null)
-                SetSpriteSeries(sprites[Directions.Down]);
+            if(_prevAnimationClipData == null)
+                SetAnimationClip(animationClipDatas[Directions.Right]);
         }
-
-        if (input.x > 0)
+        else
         {
-            SetSpriteSeries(sprites[Directions.Right]);
+            if (Mathf.Abs(input.x) > Mathf.Abs(input.y))
+            {
+                // Horizontal movement has priority
+                if (input.x > 0)
+                {
+                    SetAnimationClip(animationClipDatas[Directions.Right]);
+                }
+                else
+                {
+                    SetAnimationClip(animationClipDatas[Directions.Left]);
+                }
+            }
+            else
+            {
+                // Vertical movement has priority
+                if (input.y > 0)
+                {
+                    SetAnimationClip(animationClipDatas[Directions.Up]);
+                }
+                else
+                {
+                    SetAnimationClip(animationClipDatas[Directions.Down]);
+                }
+            }
         }
-
-        if (input.x < 0)
-        {
-            SetSpriteSeries(sprites[Directions.Left]);
-        }
-
-        if (input.y > 0)
-        {
-            SetSpriteSeries(sprites[Directions.Up]);
-        }
-
-        if (input.y < 0)
-        {
-            SetSpriteSeries(sprites[Directions.Down]);
-        }
-
-        currentSpriteSeries.Update();
-        SetSprite(currentSpriteSeries.CurrentSprite);
     }
 
 
-    private void SetSpriteSeries(SpriteSeries spriteSeries)
+    private void SetAnimationClip(AnimationClipData animationClipData)
     {
-        this.currentSpriteSeries = spriteSeries;
-        spriteRenderer.flipX = currentSpriteSeries.flip;
-        currentSpriteSeries.Enter();
-    }
+        anim.Play(animationClipData.clipName);
+        spriteRenderer.flipX = animationClipData.flip;
 
-    private void SetSprite(Sprite sprite)
-    {
-        spriteRenderer.sprite = sprite;
-        prevSprite = spriteRenderer.sprite;
+        _prevAnimationClipData = animationClipData;
+
     }
 }

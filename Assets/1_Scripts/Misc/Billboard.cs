@@ -1,18 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Billboard : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Camera cam;
+    public float angleThreshold = 45f; // Maximum allowed angle in degrees
+
+
+    private void Awake()
     {
-        
+        cam = Camera.main; // Cache the main camera
     }
 
-    // Update is called once per frame
-    void Update()
+    private void LateUpdate()
     {
-        
+        if (cam == null) return;
+
+        Vector3 direction = cam.transform.position - transform.position;
+        direction.y = 0; // Keep the y direction unchanged
+
+        Quaternion rotation = Quaternion.LookRotation(direction);
+        Vector3 eulerAngles = rotation.eulerAngles;
+
+        // restrict how tilted the x-axis can be (90 degrees is upright)
+        eulerAngles = new Vector3(Mathf.Clamp(eulerAngles.x, 90 - 45, 90 + 45), eulerAngles.y, 0f);
+
+
+        transform.rotation = Quaternion.Euler(eulerAngles);
     }
 }
