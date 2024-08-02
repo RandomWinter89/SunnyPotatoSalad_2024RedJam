@@ -21,6 +21,7 @@ public class CharacterManager : MonoBehaviour
     private void Awake()
     {
         characterGrowth.OnGrowthStageUpdated += OnGrowthStageUpdated;
+        OnGrowthStageUpdated(characterGrowth.FirstGrowthStageData);
 
     }
 
@@ -56,7 +57,7 @@ public class CharacterManager : MonoBehaviour
 
 public class CharacterConfig
 {
-    public SerializedDictionary<Directions, Sprite> sprites = new();
+    public SerializedDictionary<Directions, SpriteSeries> sprites = new();
     public float speed = 1f;
     public float manueverability = 1f;
     public float scale = 1f;

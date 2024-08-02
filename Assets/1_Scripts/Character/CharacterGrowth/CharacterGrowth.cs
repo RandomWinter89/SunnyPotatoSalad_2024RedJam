@@ -14,6 +14,8 @@ public class CharacterGrowth : MonoBehaviour
     public System.Action<GrowthStageData> OnGrowthStageUpdated;
 
 
+    public GrowthStageData FirstGrowthStageData => characterGrowthDataSO.growthStageDatas[0];
+    public GrowthStageData LastGrowthStageData => characterGrowthDataSO.growthStageDatas[characterGrowthDataSO.growthStageDatas.Count - 1];
     public GrowthStageData CurrentGrowthStageData => characterGrowthDataSO.growthStageDatas[growthStage];
 
 

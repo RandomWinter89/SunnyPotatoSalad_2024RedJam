@@ -8,52 +8,68 @@ public class CharacterAnimationMonitor : MonoBehaviour
 {
    // [SerializeField] private Animator anim;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField, NaughtyAttributes.ReadOnly] private SerializedDictionary<Directions, Sprite> sprites = new();
+    [SerializeField, NaughtyAttributes.ReadOnly] private SerializedDictionary<Directions, SpriteSeries> sprites = new();
 
     private Sprite prevSprite;
 
-    public void UpdateSprites(SerializedDictionary<Directions, Sprite> sprites )
+    private SpriteSeries currentSpriteSeries = null;
+
+    public void UpdateSprites(SerializedDictionary<Directions, SpriteSeries> sprites )
     {
         this.sprites = sprites;
+
     }
+
+
+    private void Update()
+    {
+        // todo: use joystick values
+        Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+        UpdateAnimation(input);
+    }
+
 
     private void UpdateAnimation(Vector2 input)
     {
         // determine sprite to use based on input direction
 
-        if(input == Vector2.zero)
+        if (input == Vector2.zero)
         {
-            if(prevSprite == null)
-                SetSprite(sprites[Directions.Down]);
+            if (prevSprite == null)
+                SetSpriteSeries(sprites[Directions.Down]);
         }
 
-        if(input.x > 0)
+        if (input.x > 0)
         {
-            SetSprite(sprites[Directions.Right]);
+            SetSpriteSeries(sprites[Directions.Right]);
         }
 
-        if(input.x < 0)
+        if (input.x < 0)
         {
-            SetSprite(sprites[Directions.Left]);
+            SetSpriteSeries(sprites[Directions.Left]);
         }
 
-        if(input.y > 0)
+        if (input.y > 0)
         {
-            SetSprite(sprites[Directions.Up]);
+            SetSpriteSeries(sprites[Directions.Up]);
         }
 
-        if(input.y < 0)
+        if (input.y < 0)
         {
-            SetSprite(sprites[Directions.Down]);
+            SetSpriteSeries(sprites[Directions.Down]);
         }
+
+        currentSpriteSeries.Update();
+        SetSprite(currentSpriteSeries.CurrentSprite);
     }
 
-    private void Update()
-    {
-        // todo: use joystick values
-        Vector2 input = Vector2.zero;
 
-        UpdateAnimation(input);
+    private void SetSpriteSeries(SpriteSeries spriteSeries)
+    {
+        this.currentSpriteSeries = spriteSeries;
+        spriteRenderer.flipX = currentSpriteSeries.flip;
+        currentSpriteSeries.Enter();
     }
 
     private void SetSprite(Sprite sprite)
