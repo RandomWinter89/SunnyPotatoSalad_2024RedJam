@@ -13,4 +13,18 @@ MonoBehaviour:
   m_Name: CharacterGrowthDataSO
   m_EditorClassIdentifier: 
   growthStageDatas:
-    _serializedList: []
+    _serializedList:
+    - Key: 0
+      Value:
+        sprites:
+          _serializedList:
+          - Key: 0
+            Value: {fileID: 0}
+          - Key: 1
+            Value: {fileID: 0}
+          - Key: 2
+            Value: {fileID: 0}
+          - Key: 3
+            Value: {fileID: 0}
+        speed: 1
+        manueverability: 1
