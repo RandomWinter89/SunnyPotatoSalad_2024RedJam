@@ -26,6 +26,8 @@ public class GrowthStageData
 
     public float speed = 1f;
     public float manueverability = 1f;
+    public float scale = 1f;
+    public float cameraZoom = 10f;
 }
 
 public enum Directions
