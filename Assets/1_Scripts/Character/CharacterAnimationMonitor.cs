@@ -6,59 +6,72 @@ using AYellowpaper.SerializedCollections;
 
 public class CharacterAnimationMonitor : MonoBehaviour
 {
-   // [SerializeField] private Animator anim;
+    [SerializeField] private Animator anim;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField, NaughtyAttributes.ReadOnly] private SerializedDictionary<Directions, Sprite> sprites = new();
+    [SerializeField, NaughtyAttributes.ReadOnly] private SerializedDictionary<Directions, AnimationClipData> animationClipDatas = new();
 
-    private Sprite prevSprite;
+    private AnimationClipData _prevAnimationClipData = null;
 
-    public void UpdateSprites(SerializedDictionary<Directions, Sprite> sprites )
+    public void UpdateSprites(SerializedDictionary<Directions, AnimationClipData> animationClipDatas)
     {
-        this.sprites = sprites;
+        this.animationClipDatas = animationClipDatas;
+
     }
 
-    private void UpdateAnimation(Vector2 input)
-    {
-        // determine sprite to use based on input direction
-
-        if(input == Vector2.zero)
-        {
-            if(prevSprite == null)
-                SetSprite(sprites[Directions.Down]);
-        }
-
-        if(input.x > 0)
-        {
-            SetSprite(sprites[Directions.Right]);
-        }
-
-        if(input.x < 0)
-        {
-            SetSprite(sprites[Directions.Left]);
-        }
-
-        if(input.y > 0)
-        {
-            SetSprite(sprites[Directions.Up]);
-        }
-
-        if(input.y < 0)
-        {
-            SetSprite(sprites[Directions.Down]);
-        }
-    }
 
     private void Update()
     {
         // todo: use joystick values
-        Vector2 input = Vector2.zero;
+        Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
         UpdateAnimation(input);
     }
 
-    private void SetSprite(Sprite sprite)
+    private void UpdateAnimation(Vector2 input)
     {
-        spriteRenderer.sprite = sprite;
-        prevSprite = spriteRenderer.sprite;
+        // Determine sprite to use based on input direction
+
+        if (input == Vector2.zero)
+        {
+            if(_prevAnimationClipData == null)
+                SetAnimationClip(animationClipDatas[Directions.Right]);
+        }
+        else
+        {
+            if (Mathf.Abs(input.x) > Mathf.Abs(input.y))
+            {
+                // Horizontal movement has priority
+                if (input.x > 0)
+                {
+                    SetAnimationClip(animationClipDatas[Directions.Right]);
+                }
+                else
+                {
+                    SetAnimationClip(animationClipDatas[Directions.Left]);
+                }
+            }
+            else
+            {
+                // Vertical movement has priority
+                if (input.y > 0)
+                {
+                    SetAnimationClip(animationClipDatas[Directions.Up]);
+                }
+                else
+                {
+                    SetAnimationClip(animationClipDatas[Directions.Down]);
+                }
+            }
+        }
+    }
+
+
+    private void SetAnimationClip(AnimationClipData animationClipData)
+    {
+        anim.Play(animationClipData.clipName);
+        spriteRenderer.flipX = animationClipData.flip;
+
+        _prevAnimationClipData = animationClipData;
+
     }
 }

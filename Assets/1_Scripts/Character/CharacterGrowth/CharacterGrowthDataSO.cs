@@ -16,7 +16,7 @@ public class CharacterGrowthDataSO : ScriptableObject
 public class GrowthStageData
 {
     // include directions
-    public SerializedDictionary<Directions, Sprite> sprites = new()
+    public SerializedDictionary<Directions, AnimationClipData> animationClipDatas = new()
     {
         { Directions.Up, null},
         { Directions.Down, null},
@@ -27,7 +27,7 @@ public class GrowthStageData
     public float speed = 1f;
     public float manueverability = 1f;
     public float scale = 1f;
-    public float cameraZoom = 10f;
+    public float cameraZoom;
 }
 
 public enum Directions
@@ -36,4 +36,11 @@ public enum Directions
     Down,
     Left,
     Right
+}
+
+[System.Serializable]
+public class AnimationClipData
+{
+    public string clipName;
+    public bool flip;
 }

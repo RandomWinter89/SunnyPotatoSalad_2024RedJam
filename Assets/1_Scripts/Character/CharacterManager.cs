@@ -21,6 +21,7 @@ public class CharacterManager : MonoBehaviour
     private void Awake()
     {
         characterGrowth.OnGrowthStageUpdated += OnGrowthStageUpdated;
+        OnGrowthStageUpdated(characterGrowth.FirstGrowthStageData);
 
     }
 
@@ -29,10 +30,13 @@ public class CharacterManager : MonoBehaviour
         CharacterConfig characterConfig = new CharacterConfig(growthStageData);
 
         // Update Sprites
-        animationMonitor.UpdateSprites(characterConfig.sprites);
+        animationMonitor.UpdateSprites(characterConfig.animationClipDatas);
 
         // Update Speed
+
         // Update Scale
+        characterTransform.localScale = Vector3.one * characterConfig.scale;
+
         // Update Camera Zoom
     }
 
@@ -56,7 +60,7 @@ public class CharacterManager : MonoBehaviour
 
 public class CharacterConfig
 {
-    public SerializedDictionary<Directions, Sprite> sprites = new();
+    public SerializedDictionary<Directions, AnimationClipData> animationClipDatas = new();
     public float speed = 1f;
     public float manueverability = 1f;
     public float scale = 1f;
@@ -64,7 +68,7 @@ public class CharacterConfig
 
     public CharacterConfig(GrowthStageData growthStageData)
     {
-        this.sprites = growthStageData.sprites;
+        this.animationClipDatas = growthStageData.animationClipDatas;
         this.speed = growthStageData.speed;
         this.manueverability = growthStageData.manueverability;
         this.scale = growthStageData.scale;

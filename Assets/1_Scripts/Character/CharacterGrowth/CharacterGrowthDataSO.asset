@@ -16,33 +16,49 @@ MonoBehaviour:
     _serializedList:
     - Key: 0
       Value:
-        sprites:
+        animationClipDatas:
           _serializedList:
           - Key: 0
-            Value: {fileID: 0}
+            Value:
+              clipName: A_Player_WalkUp
+              flip: 0
           - Key: 1
-            Value: {fileID: 0}
+            Value:
+              clipName: A_Player_WalkDown
+              flip: 0
           - Key: 2
-            Value: {fileID: 0}
+            Value:
+              clipName: A_Player_WalkLeft
+              flip: 0
           - Key: 3
-            Value: {fileID: 0}
+            Value:
+              clipName: A_Player_WalkLeft
+              flip: 1
         speed: 1
         manueverability: 1
         scale: 1
         cameraZoom: 10
     - Key: 1
       Value:
-        sprites:
+        animationClipDatas:
           _serializedList:
           - Key: 0
-            Value: {fileID: 0}
+            Value:
+              clipName: A_Player_WalkUp
+              flip: 0
           - Key: 1
-            Value: {fileID: 0}
+            Value:
+              clipName: A_Player_WalkDown
+              flip: 0
           - Key: 2
-            Value: {fileID: 0}
+            Value:
+              clipName: A_Player_WalkLeft
+              flip: 0
           - Key: 3
-            Value: {fileID: 0}
+            Value:
+              clipName: A_Player_WalkLeft
+              flip: 1
         speed: 1
         manueverability: 1
-        scale: 1
+        scale: 2
         cameraZoom: 10

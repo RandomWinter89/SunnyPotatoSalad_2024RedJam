@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2074134186564639115}
   - component: {fileID: 2074134186564639116}
   - component: {fileID: 2074134186564639117}
+  - component: {fileID: 818653883650462020}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -83,6 +84,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &818653883650462020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074134186564639119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cda314a650b2342eda545621f14f00c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angleThreshold: 45
 --- !u!1 &2074134186642238218
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,7 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 7833637792270102265}
-  dropForceMinMax: {x: 5, y: 5}
+  dropForceMinMax: {x: 5, y: 8}
   growthAmount: 0.1
   canBeCollectedCooldown: 1
   canBeCollected: 1
