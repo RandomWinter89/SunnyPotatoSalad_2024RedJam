@@ -5,17 +5,26 @@ using UnityEngine;
 public class CharacterGrowthItem : MonoBehaviour
 {
     [SerializeField] private float growthAmount = .1f;
+    public float GrowthAmount => growthAmount;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            OnCollected(other.GetComponent<CharacterGrowth>());
+            CharacterGrowth characterGrowth = other.transform.parent.GetComponent<CharacterGrowth>();
+            OnCollected(characterGrowth);
         }
     }
 
     private void OnCollected(CharacterGrowth characterGrowth)
     {
-        characterGrowth.IncreaseGrowth(growthAmount);
+        characterGrowth.IncreaseGrowth(this);
+        gameObject.SetActive(false);
+    }
+
+    public void SetPositionAndEnable(Vector3 position)
+    {
+        gameObject.transform.position = position;
+        gameObject.SetActive(true);
     }
 }

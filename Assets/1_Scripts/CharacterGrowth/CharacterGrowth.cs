@@ -9,11 +9,13 @@ public class CharacterGrowth : MonoBehaviour
     [SerializeField] CharacterGrowthDataSO characterGrowthDataSO;
     [SerializeField, NaughtyAttributes.ReadOnly] private int growthStage;
     [SerializeField, NaughtyAttributes.ReadOnly, NaughtyAttributes.ProgressBar(1f)] private float growthPercentage;
+    private List<CharacterGrowthItem> collectedGrowthItems = new();
 
 
-    public void IncreaseGrowth(float amount)
+
+    public void IncreaseGrowth(CharacterGrowthItem growthItem)
     {
-        growthPercentage += amount;
+        growthPercentage += growthItem.GrowthAmount;
         growthPercentage = Mathf.Clamp01(growthPercentage);
 
         if (growthPercentage >= 1)
@@ -21,6 +23,9 @@ public class CharacterGrowth : MonoBehaviour
             growthStage++;
             UpdateGrowth(growthStage);
         }
+
+
+        collectedGrowthItems.Add(growthItem);
     }
 
     private void UpdateGrowth(int growthStage)
