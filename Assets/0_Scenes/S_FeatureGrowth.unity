@@ -7652,8 +7652,8 @@ GameObject:
   - component: {fileID: 708733809}
   - component: {fileID: 708733808}
   - component: {fileID: 708733807}
-  - component: {fileID: 708733810}
   - component: {fileID: 708733811}
+  - component: {fileID: 708733812}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -7739,7 +7739,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 708733805}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &708733810
+--- !u!114 &708733811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708733805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 404474775794c4d8793e5c05e3cb584e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundMesh: {fileID: 708733808}
+--- !u!114 &708733812
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7767,21 +7780,8 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 7cd678ac1207747388c66f61ba3d6201, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: c019ce7cd584547439057aac52cd6eff, type: 2}
   m_BuildHeightMesh: 0
---- !u!114 &708733811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708733805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 404474775794c4d8793e5c05e3cb584e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groundMesh: {fileID: 708733808}
 --- !u!1 &718129695
 GameObject:
   m_ObjectHideFlags: 0
@@ -16330,12 +16330,12 @@ PrefabInstance:
     - target: {fileID: 8170153791668043268, guid: 0d230cc8be529a542a08cb878ab14b18,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8170153791668043268, guid: 0d230cc8be529a542a08cb878ab14b18,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8170153791668043268, guid: 0d230cc8be529a542a08cb878ab14b18,
         type: 3}
