@@ -27,12 +27,17 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float _acceleration = 2.5f;
     [SerializeField] private float _decceleration = 3.85f;
 
+    [SerializeField] private float stunDuration = 2f;
+    [SerializeField] private float _knockbackForce = 1f;
+
     private float _speedMultiplier = 1f;
     private float _maneuvarability = 1f;
 
     //#Condition
     private bool _inStunned;
     private bool _hasKnocked;
+
+    private float _stunDuration = 0;
 
 #endregion
     
@@ -43,6 +48,12 @@ public class CharacterMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(_stunDuration > 0)
+        {
+            _stunDuration -= Time.deltaTime;
+            return;
+        }
+
         HandleRun();
     }
 
@@ -78,5 +89,19 @@ public class CharacterMovement : MonoBehaviour
     {
         manuevarability = Mathf.Clamp(manuevarability, .3f, 1f);
         this._maneuvarability = manuevarability;
+    }
+
+    private void SetStunDuration(float duration)
+    {
+        _stunDuration = duration;
+    }
+
+    [NaughtyAttributes.Button]
+    public void Knockback()
+    {
+        Vector3 dir = -_prevForce.normalized;
+        Vector3 force = dir * _knockbackForce;
+        _rigidbody.AddForce( force, ForceMode.Impulse);
+        SetStunDuration(stunDuration);
     }
 }

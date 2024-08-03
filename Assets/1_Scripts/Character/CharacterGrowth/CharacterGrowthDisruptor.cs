@@ -6,6 +6,7 @@ public class CharacterGrowthDisruptor : MonoBehaviour
 {
     [SerializeField] private float growthDecreaseAmount = .4f;
     [SerializeField] private bool dropsFood = false;
+    [SerializeField] private bool appliesKnockback = false;
 
     private void OnCollisionEnter(Collision other)
     {
@@ -16,6 +17,9 @@ public class CharacterGrowthDisruptor : MonoBehaviour
 
             if(dropsFood)
                 characterGrowth.DropGrowthItems();
+
+            if (appliesKnockback)
+                other.collider.transform.parent.GetComponent<CharacterMovement>().Knockback();
         }
     }
 }

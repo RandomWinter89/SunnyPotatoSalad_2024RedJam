@@ -31,6 +31,9 @@ public class PointsTallySystem : MonoBehaviour
 
         // update player data - highscore
         // update player data - airAsiaPoints
+
+        if(!GameManager.IsDevMode)
+            PlayFabUtils.SetUserStatistic(PlayFabKeys.L_HIGHSCORE, scoreSystem.Highscore);
     }
 
 

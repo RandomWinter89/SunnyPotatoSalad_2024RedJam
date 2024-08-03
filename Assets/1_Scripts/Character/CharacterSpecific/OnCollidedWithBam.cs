@@ -19,11 +19,9 @@ public class OnCollidedWithBam : MonoBehaviour
     {
         if (characterGrowth.GrowthStage < GROWTH_STAGE_ROLL)
         {
-            Debug.Log("cannot squash");
             return;
         }
 
-        Debug.Log("squash");
         characterGrowth.DecreaseGrowth(.4f);
         enemy.Die();
     }

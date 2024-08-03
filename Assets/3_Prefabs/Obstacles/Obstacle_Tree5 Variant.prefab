@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 1595526342413299420, guid: 9531f5037540f44d9bf053ab6d7fbadd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.76
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1595526342413299420, guid: 9531f5037540f44d9bf053ab6d7fbadd,
         type: 3}
@@ -65,7 +65,12 @@ PrefabInstance:
     - target: {fileID: 1595526342413299423, guid: 9531f5037540f44d9bf053ab6d7fbadd,
         type: 3}
       propertyPath: m_Name
-      value: Obstacle_Tree5
+      value: Obstacle_Tree5 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6738223155639501058, guid: 9531f5037540f44d9bf053ab6d7fbadd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8800959920318167977, guid: 9531f5037540f44d9bf053ab6d7fbadd,
         type: 3}

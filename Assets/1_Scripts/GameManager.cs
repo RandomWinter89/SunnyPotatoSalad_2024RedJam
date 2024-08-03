@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private PauseMenu pauseMenu;
 
-
+    public static bool IsDevMode = true;
 
 
 
@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     public void OnGameEnded()
     {
         pointsTallySystem.gameObject.SetActive(true);
+        hud.gameObject.SetActive(false);
 
         pauseMenu.gameObject.SetActive(false);
     }

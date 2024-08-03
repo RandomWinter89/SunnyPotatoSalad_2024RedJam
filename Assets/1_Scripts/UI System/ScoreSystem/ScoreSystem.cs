@@ -26,6 +26,19 @@ public class ScoreSystem : MonoBehaviour
     {
         UpdateScorePoint();
 
+        if (GameManager.IsDevMode)
+        {
+            _personalScore = 0;
+        }
+        else
+        {
+            PlayFabUtils.GetUserStatistic(PlayFabKeys.L_HIGHSCORE, (highscore) =>
+            {
+                _personalScore = highscore;
+            });
+        }
+
+
         //Extract highscore to personal score;
     }
     

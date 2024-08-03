@@ -277,6 +277,8 @@ MonoBehaviour:
   _baseSpeed: 12
   _acceleration: 2.5
   _decceleration: 3.85
+  stunDuration: 2
+  _knockbackForce: 30
 --- !u!1 &4006376087630925299
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,7 +351,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 1958264681, guid: 23ca93d161b194e4dadaae6294be639d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
