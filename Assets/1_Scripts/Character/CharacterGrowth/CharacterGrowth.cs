@@ -43,6 +43,8 @@ public class CharacterGrowth : MonoBehaviour
             growthStage++;
             UpdateGrowth(growthStage);
             growthPercentage = 0f;
+
+            ScoreSystem.Instance.IncrementScore(120);
         }
 
         // for use when character touched a border an drops the items
@@ -67,6 +69,8 @@ public class CharacterGrowth : MonoBehaviour
             if(TryGetRandomGrowthItemInList(out CharacterGrowthItem growthItem))
             {
                 Drop(growthItem);
+
+                ScoreSystem.Instance.DecrementScore(20);
             }
         }
     }

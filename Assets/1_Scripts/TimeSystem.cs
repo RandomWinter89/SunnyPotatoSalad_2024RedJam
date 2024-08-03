@@ -36,10 +36,7 @@ public class TimeSystem : MonoBehaviour
 
     private void UpdateTimerVisual(float _time)
     {
-        _time += 1;
-
-        float _second = Mathf.FloorToInt(_time % 60);
-        _TBTimer.text = _second.ToString();
+        _TBTimer.text = _time.ToString("F0");
     }
 
 }

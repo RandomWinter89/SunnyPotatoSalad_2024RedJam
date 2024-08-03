@@ -12,8 +12,17 @@ public class ScoreSystem : MonoBehaviour
     [SerializeField] private TMP_Text _currentScorePoint;
     [SerializeField] private TMP_Text _personalScorePoint;
 
+    public static ScoreSystem Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     private void Start()
     {
+        UpdateScorePoint();
+
         //Extract highscore to personal score;
     }
     

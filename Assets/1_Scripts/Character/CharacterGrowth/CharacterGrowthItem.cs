@@ -12,8 +12,17 @@ public class CharacterGrowthItem : MonoBehaviour
 
     [SerializeField] private float canBeCollectedCooldown = 1f;
     [SerializeField, NaughtyAttributes.ReadOnly] private bool canBeCollected = true;
-    private Coroutine resetCooldownRoutine = null;
+    private Coroutine resetCanBeCollectedCooldownRoutine = null;
 
+    [SerializeField] private float disappearDelay = 5f;
+
+    public static System.Action OnCollectedAction;
+
+
+    private void OnDestroy()
+    {
+        OnCollectedAction = null;
+    }
 
     private void OnDisable()
     {
@@ -35,6 +44,10 @@ public class CharacterGrowthItem : MonoBehaviour
     private void OnCollected(CharacterGrowth characterGrowth)
     {
         characterGrowth.IncreaseGrowth(this);
+        ScoreSystem.Instance.IncrementScore(35);
+
+        if (OnCollectedAction != null) OnCollectedAction.Invoke();
+
         gameObject.SetActive(false);
     }
 
@@ -45,17 +58,26 @@ public class CharacterGrowthItem : MonoBehaviour
         gameObject.SetActive(true);
 
         canBeCollected = false;
-        if (resetCooldownRoutine != null) StopCoroutine(resetCooldownRoutine);
-        resetCooldownRoutine = StartCoroutine(ResetCooldown());
+        if (resetCanBeCollectedCooldownRoutine != null) StopCoroutine(resetCanBeCollectedCooldownRoutine);
+        resetCanBeCollectedCooldownRoutine = StartCoroutine(ResetCanBeCollectedCooldown());
 
         Vector3 dir = new Vector3(GetRandomNormalizedValue(), 1, GetRandomNormalizedValue());
         rb.AddForce(dir * GetRandomForce(dropForceMinMax.x, dropForceMinMax.y), ForceMode.Impulse);
+
+        StartCoroutine(DisappearRoutine());
     }
 
-    private IEnumerator ResetCooldown()
+    private IEnumerator ResetCanBeCollectedCooldown()
     {
         yield return new WaitForSeconds(canBeCollectedCooldown);
         canBeCollected = true;
+    }
+
+    private IEnumerator DisappearRoutine()
+    {
+        yield return new WaitForSeconds(disappearDelay);
+
+        gameObject.SetActive(false);
     }
 
     private float GetRandomNormalizedValue()
