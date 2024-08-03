@@ -5,8 +5,8 @@ using static PlayFabKeys;
 
 public class DataManager : MonoBehaviour
 {
-    [SerializeField] PlayerData playerData;
-    [SerializeField] DailyCheckIn dailyReward;
+    public PlayerData playerData;
+    public DailyCheckIn dailyReward;
 
     public static DataManager main;
 
