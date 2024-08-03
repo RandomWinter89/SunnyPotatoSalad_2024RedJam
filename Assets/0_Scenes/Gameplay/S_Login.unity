@@ -196,6 +196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faa1fce9c213a40cdbd579e4baf793a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sessionTicket: 
+  playFabID: 
   playerData:
     <Highscore>k__BackingField: 0
     <Currency>k__BackingField:
@@ -203,6 +205,7 @@ MonoBehaviour:
       airAsiaPoint: 0
   dailyReward:
     dayStreak: 0
+    nextClaimTime: 
 --- !u!4 &468663012
 Transform:
   m_ObjectHideFlags: 0

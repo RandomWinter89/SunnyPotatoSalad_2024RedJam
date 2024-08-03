@@ -47,4 +47,10 @@ public class DataManager : MonoBehaviour
             this.dailyReward = data;
         }, null, false);
     }
+
+    [NaughtyAttributes.Button]
+    private void Test_Push_Leaderboard_Statistic()
+    {
+        PlayFabUtils.SetUserStatistic(L_HIGHSCORE, 100);
+    }
 }

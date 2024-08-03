@@ -12,6 +12,8 @@ public static class PlayFabKeys
 
     public const string P_PLAYER_DATA = "P_PlayerData";
     public const string P_DAILY_CHECK_IN = "P_DailyCheckIn";
+
+    public const string L_HIGHSCORE = "Highscore";
 }
 
 public static class PlayFabUtils

@@ -15,6 +15,11 @@ public class DailyRewardManager : MonoBehaviour
     [SerializeField] GameObject panel;
     [SerializeField] TMP_Text dayStrekText;
     [SerializeField] Button claimBtn;
+    
+    [SerializeField] GameObject ticketSection;
+    [SerializeField] GameObject pointSection;
+    [SerializeField] TMP_Text ticketCountText;
+    [SerializeField] TMP_Text pointCountText;
 
     [Header("Data")]
     [SerializeField] SerializedDictionary<int, Currency> dailyRewardStats = new();
@@ -84,6 +89,15 @@ public class DailyRewardManager : MonoBehaviour
             // streak days
             data.dailyReward.dayStreak += 1;
         }
+
+        int ticketReward = dailyRewardStats[data.dailyReward.dayStreak].ticketCount;
+        int airAsiaPointsReward = dailyRewardStats[data.dailyReward.dayStreak].airAsiaPoint;
+
+        ticketSection.SetActive(ticketReward > 0);
+        pointSection.SetActive(airAsiaPointsReward > 0);
+
+        ticketCountText.SetText($"x{ticketReward}");
+        pointCountText.SetText($"x{airAsiaPointsReward}");
 
         data.dailyReward.SetNextClaimTime(GetNextClaimTime());
     }
