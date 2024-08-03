@@ -9,6 +9,11 @@ using System;
 public static class PlayFabKeys
 {
     public const string TITLE_ID = "BCDB6";
+
+    public const string P_PLAYER_DATA = "P_PlayerData";
+    public const string P_DAILY_CHECK_IN = "P_DailyCheckIn";
+
+    public const string L_HIGHSCORE = "Highscore";
 }
 
 public static class PlayFabUtils
@@ -29,6 +34,11 @@ public static class PlayFabUtils
         result =>
         {
             Debug.Log($"Login success");
+
+            var data = DataManager.main;
+            data.sessionTicket = result.SessionTicket;
+            data.playFabID = result.PlayFabId;
+
             onLogin?.Invoke();
             done = true;
         },
@@ -43,12 +53,12 @@ public static class PlayFabUtils
 
         if (errorCode == PlayFabErrorCode.AccountNotFound)
         {
-            yield return Register(email, password);
+            yield return RegisterUser(email, password);
             yield return Login(email, password, onLogin);
         }
     }
 
-    public static IEnumerator Register(string email, string password)
+    public static IEnumerator RegisterUser(string email, string password)
     {
         bool done = false;
 
@@ -132,7 +142,7 @@ public static class PlayFabUtils
         });
     }
 
-    public static IEnumerator LoadData<T>(string key, Action<T> success, Action<string> error = null)
+    public static IEnumerator LoadData<T>(string key, Action<T> success, Action<string> error = null, bool autoSave = true) where T : new()
     {
         bool done = false;
 
@@ -150,13 +160,17 @@ public static class PlayFabUtils
         while (!done) yield return null;
     }
 
-    public static void Load<T>(string key, Action<T> success, Action<string> error = null)
+    public static void Load<T>(string key, Action<T> success, Action<string> error = null, bool autoSave = true) where T : new()
     {
-        T data = default;
+        T data = new T();
 
         PlayFabClientAPI.GetUserData(new GetUserDataRequest
         {
-            PlayFabId = PlayFabKeys.TITLE_ID
+            AuthenticationContext = new PlayFabAuthenticationContext()
+            {
+                PlayFabId = DataManager.main.playFabID,
+                ClientSessionTicket = DataManager.main.sessionTicket
+            }
         },
         result =>
         {
@@ -172,11 +186,14 @@ public static class PlayFabUtils
                 //Player config doesn't exist, create from default and update it to PlayFab server
                 Debug.Log($"No key {key} found from PlayFab, create a default value data");
                 success.Invoke(data);
+
+                if (autoSave)
+                    Save<T>(key, data);
             }
         },
         err =>
         {
-            string errorMsg = $"<color=red>Failed load data from PlayFab: {err.ErrorMessage}</color>";
+            string errorMsg = $"<color=red>Failed load data from PlayFab: {key} - {err.ErrorMessage}</color>";
             Debug.LogError(errorMsg);
             error?.Invoke(errorMsg);
         });

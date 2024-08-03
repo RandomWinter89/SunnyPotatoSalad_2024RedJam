@@ -181,10 +181,10 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 5
   m_AngularDrag: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!95 &6474990442631242228
 Animator:
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterGrowth: {fileID: 11400000, guid: 2c6e6e0e2323e48b1aa5aef3898df2de, type: 2}
   _joystick: {fileID: 0}
-  _baseSpeed: 5.5
+  _baseSpeed: 12
   _acceleration: 2.5
   _decceleration: 3.85
 --- !u!1 &4006376087630925299
