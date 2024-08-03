@@ -15,14 +15,19 @@ public class CharacterMovement : MonoBehaviour
     //#Controller Value
     private Vector3 _horizontal;
     private Vector3 _vertical;
+    private Vector3 _prevDirection;
 
 
     public Vector2 Input { get {  return new Vector2(_joystick.Horizontal, _joystick.Vertical); } }
+    public Vector2 Velocity { get { return new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.z); } }
+    
 
     //#Run Value
-    [SerializeField] private float _maximumRunSpeed = 5.5f;
+    [SerializeField] private float _baseSpeed = 5.5f;
     [SerializeField] private float _acceleration = 2.5f;
     [SerializeField] private float _decceleration = 3.85f;
+
+    private float _speedMultiplier = 1f;
 
     //#Condition
     private bool _inStunned;
@@ -40,19 +45,32 @@ public class CharacterMovement : MonoBehaviour
         HandleRun();
     }
 
-    private void HandleRun()
+    protected virtual void HandleRun()
     {
         //Input data
         _horizontal = Vector3.right * _joystick.Horizontal;
         _vertical = Vector3.forward * _joystick.Vertical;
         Vector3 _direction = _horizontal + _vertical;
 
-        _rigidbody.AddForce(_direction.normalized * _maximumRunSpeed * 10f, ForceMode.Force);
+        // if no input, keep going the previous direction
+        if(_direction == Vector3.zero)
+        {
+            _rigidbody.AddForce(_prevDirection * _baseSpeed * _speedMultiplier * 10f, ForceMode.Force);
+            return;
+        }
+
+        _rigidbody.AddForce(_direction.normalized * _baseSpeed * _speedMultiplier * 10f, ForceMode.Force);
+        _prevDirection = _direction;
     }
 
     public void GrowthKey(int _keyID)
     {
-        _maximumRunSpeed = _characterGrowth.growthStageDatas[_keyID].speed;
+        _baseSpeed = _characterGrowth.growthStageDatas[_keyID].speedMultiplier;
         _rigidbody.drag = _characterGrowth.growthStageDatas[_keyID].manueverability;
+    }
+
+    public void SetSpeedMultiplier(float speedMultiplier)
+    {
+        this._speedMultiplier = speedMultiplier;
     }
 }

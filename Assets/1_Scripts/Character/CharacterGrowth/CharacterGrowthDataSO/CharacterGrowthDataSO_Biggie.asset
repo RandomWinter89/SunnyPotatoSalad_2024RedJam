@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 616287ee447ff4e5d9069237723c3ce3, type: 3}
-  m_Name: CharacterGrowthDataSO
+  m_Name: CharacterGrowthDataSO_Biggie
   m_EditorClassIdentifier: 
   growthStageDatas:
     _serializedList:
@@ -20,45 +20,32 @@ MonoBehaviour:
           _serializedList:
           - Key: 0
             Value:
-              clipName: A_Player_WalkUp
+              clipName: A_Biggie_WalkUp
               flip: 0
+              priority: 0
           - Key: 1
             Value:
-              clipName: A_Player_WalkDown
+              clipName: A_Biggie_WalkDown
               flip: 0
+              priority: 0
           - Key: 2
             Value:
-              clipName: A_Player_WalkLeft
+              clipName: A_Biggie_WalkLeft
               flip: 0
+              priority: 0
           - Key: 3
             Value:
-              clipName: A_Player_WalkLeft
+              clipName: A_Biggie_WalkLeft
               flip: 1
-        speed: 1
+              priority: 0
+        specialAnimationClipDatas:
+          _serializedList:
+          - Key: Squashed
+            Value:
+              clipName: A_Biggie_Flat
+              flip: 0
+              priority: 1
+        speedMultiplier: 1
         manueverability: 1
         scale: 1
-        cameraZoom: 10
-    - Key: 1
-      Value:
-        animationClipDatas:
-          _serializedList:
-          - Key: 0
-            Value:
-              clipName: A_Player_RollUp
-              flip: 0
-          - Key: 1
-            Value:
-              clipName: A_Player_RollDown
-              flip: 0
-          - Key: 2
-            Value:
-              clipName: A_Player_RollLeft
-              flip: 0
-          - Key: 3
-            Value:
-              clipName: A_Player_RollLeft
-              flip: 1
-        speed: 1
-        manueverability: 1
-        scale: 2
         cameraZoom: 10
