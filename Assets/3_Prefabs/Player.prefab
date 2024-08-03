@@ -182,7 +182,7 @@ Rigidbody:
   m_Drag: 5
   m_AngularDrag: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
@@ -241,6 +241,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 6248101963708648107}
   animationClipDatas:
     _serializedList: []
+  specialAnimationClipDatas:
+    _serializedList: []
 --- !u!114 &183541547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,7 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterTransform: {fileID: 3038988411591063262}
   cam: {fileID: 0}
-  characterMovement: {fileID: 0}
+  characterMovement: {fileID: 183541549}
   characterGrowth: {fileID: 518242052240225951}
   animationMonitor: {fileID: 183541546}
 --- !u!114 &183541549
@@ -272,7 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterGrowth: {fileID: 11400000, guid: 2c6e6e0e2323e48b1aa5aef3898df2de, type: 2}
   _joystick: {fileID: 0}
-  _maximumRunSpeed: 5.5
+  _baseSpeed: 5.5
   _acceleration: 2.5
   _decceleration: 3.85
 --- !u!1 &4006376087630925299
@@ -347,7 +349,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 1958264681, guid: 23ca93d161b194e4dadaae6294be639d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

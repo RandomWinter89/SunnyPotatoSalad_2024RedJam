@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CharacterGrowthItem : MonoBehaviour
 {
+    [SerializeField] private ScoreItem scoreItem;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Vector2 dropForceMinMax = new Vector2(5, 10);
 
@@ -15,6 +17,8 @@ public class CharacterGrowthItem : MonoBehaviour
     private Coroutine resetCanBeCollectedCooldownRoutine = null;
 
     [SerializeField] private float disappearDelay = 5f;
+
+    [SerializeField] private UnityEvent onCollected;
 
     public static System.Action OnCollectedAction;
 
@@ -47,6 +51,9 @@ public class CharacterGrowthItem : MonoBehaviour
         ScoreSystem.Instance.IncrementScore(35);
 
         if (OnCollectedAction != null) OnCollectedAction.Invoke();
+        if (onCollected != null) onCollected.Invoke();
+
+        scoreItem.UpdateScore();
 
         gameObject.SetActive(false);
     }
