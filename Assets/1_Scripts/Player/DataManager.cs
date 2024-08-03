@@ -5,8 +5,10 @@ using static PlayFabKeys;
 
 public class DataManager : MonoBehaviour
 {
-    public PlayerData playerData;
-    public DailyCheckIn dailyReward;
+    public string sessionTicket;
+    public string playFabID;
+    public PlayerData playerData = new();
+    public DailyCheckIn dailyReward = new();
 
     public static DataManager main;
 
@@ -25,33 +27,24 @@ public class DataManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void OnEnable()
+    public IEnumerator LoadPlayerDataRoutine()
     {
-        LoginManager.OnLogin += InitPlayerData;
-    }
-
-    private void OnDisable()
-    {
-        LoginManager.OnLogin += InitPlayerData;
-    }
-
-    private void InitPlayerData()
-    {
-        StartCoroutine(LoadPlayerDataRoutine());
-
-        IEnumerator LoadPlayerDataRoutine()
+        yield return PlayFabUtils.LoadData<PlayerData>(P_PLAYER_DATA,
+        data =>
         {
-            yield return PlayFabUtils.LoadData<PlayerData>(P_PLAYER_DATA,
-            data =>
-            {
-                this.playerData = data;
-            });
+            this.playerData = data;
+        });
 
-            yield return PlayFabUtils.LoadData<DailyCheckIn>(P_DAILY_CHECK_IN,
-            data =>
+        yield return PlayFabUtils.LoadData<DailyCheckIn>(P_DAILY_CHECK_IN,
+        data =>
+        {
+            if (data == null || string.IsNullOrEmpty(data.nextClaimTime))
             {
-                this.dailyReward = data;
-            });
-        }
+                data.SetNextClaimTime(DailyRewardManager.GetNextClaimTime());
+                PlayFabUtils.Save<DailyCheckIn>(P_DAILY_CHECK_IN, data);
+            }
+
+            this.dailyReward = data;
+        }, null, false);
     }
 }

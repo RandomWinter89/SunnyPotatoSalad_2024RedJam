@@ -46,6 +46,6 @@ public class LoginManager : MonoBehaviour
         PlayerPrefs.SetString(EMAIL, emailInput.text);
         PlayerPrefs.SetString(PASSWORD, passwordInput.text);
 
-        SceneLoader.instance.Load(Scene.Menu);
+        SceneLoader.instance.Load(Scene.Menu, DataManager.main.LoadPlayerDataRoutine());
     }
 }

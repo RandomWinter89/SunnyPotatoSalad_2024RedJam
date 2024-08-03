@@ -6,8 +6,8 @@ using UnityEngine;
 [Serializable]
 public class PlayerData
 {
-    [field:SerializeField] public int Highscore { get; private set; }
-    [field:SerializeField] public Currency Currency { get; private set; }
+    [field: SerializeField] public int Highscore { get; private set; }
+    [field: SerializeField] public Currency Currency { get; private set; } = new();
 
     public static event Action OnPlayerInfoUpdated;
 
@@ -18,7 +18,7 @@ public class PlayerData
     }
 
     public void AddTicket(int count)
-    {
+    {   
         Currency.ticketCount += count;
         OnPlayerInfoUpdated?.Invoke();
     }
@@ -33,8 +33,18 @@ public class PlayerData
 [Serializable]
 public class DailyCheckIn
 {
-    public int dayStreak;
-    public DateTime lastLoginTime;
+    public int dayStreak = 1;
+    public string nextClaimTime;
+
+    public DateTime GetNextClaimTime()
+    {
+        return nextClaimTime.ParseToKLDateTime();
+    }
+
+    public void SetNextClaimTime(DateTime dateTime)
+    {
+        nextClaimTime = dateTime.ToKLTimeString();
+    }
 }
 
 [Serializable]
