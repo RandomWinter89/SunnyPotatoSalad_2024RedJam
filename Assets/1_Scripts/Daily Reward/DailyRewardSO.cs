@@ -1,18 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class DailyRewardSO : MonoBehaviour
+[CreateAssetMenu(menuName = "Custom/DailyRewardSO", fileName = "Daily Reward 00")]
+public class DailyRewardSO : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int day;
+    public Currency rewards = new();
 }

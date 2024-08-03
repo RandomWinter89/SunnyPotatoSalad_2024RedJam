@@ -1,18 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Data : MonoBehaviour
+[Serializable]
+public class PlayerData
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int highscore;
+    public Currency currency;
+}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+[Serializable]
+public class DailyCheckIn
+{
+    public int dayStreak;
+    public DateTime lastLoginTime;
+}
+
+
+[Serializable]
+public class Currency
+{
+    public int ticketCount;
+    public int airAsiaPoint;
 }

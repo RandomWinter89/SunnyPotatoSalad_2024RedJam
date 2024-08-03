@@ -9,6 +9,9 @@ using System;
 public static class PlayFabKeys
 {
     public const string TITLE_ID = "BCDB6";
+
+    public const string P_PLAYER_DATA = "P_PlayerData";
+    public const string P_DAILY_CHECK_IN = "P_DailyCheckIn";
 }
 
 public static class PlayFabUtils
