@@ -20,15 +20,7 @@ public class CharacterAnimationMonitor : MonoBehaviour
     }
 
 
-    private void Update()
-    {
-        // todo: use joystick values
-        Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
-        UpdateAnimation(input);
-    }
-
-    private void UpdateAnimation(Vector2 input)
+    public void UpdateAnimation(Vector2 input)
     {
         // Determine sprite to use based on input direction
 

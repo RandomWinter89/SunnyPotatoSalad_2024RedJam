@@ -162,7 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7833637792270102265}
   dropForceMinMax: {x: 5, y: 8}
-  growthAmount: 0.1
+  growthAmount: 0.3
   canBeCollectedCooldown: 1
   canBeCollected: 1
 --- !u!1 &2074134187394756932

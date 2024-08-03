@@ -9,9 +9,10 @@ public class CharacterManager : MonoBehaviour
 {
     [SerializeField] private Transform characterTransform;
     [SerializeField] private Camera cam;
-    
+
 
     [Space]
+    [SerializeField] private CharacterMovement characterMovement;
     [SerializeField] private CharacterGrowth characterGrowth;
     [SerializeField] private CharacterAnimationMonitor animationMonitor;
 
@@ -22,7 +23,11 @@ public class CharacterManager : MonoBehaviour
     {
         characterGrowth.OnGrowthStageUpdated += OnGrowthStageUpdated;
         OnGrowthStageUpdated(characterGrowth.FirstGrowthStageData);
+    }
 
+    private void Update()
+    {
+        animationMonitor.UpdateAnimation(characterMovement.Input);
     }
 
     private void OnGrowthStageUpdated(GrowthStageData growthStageData)

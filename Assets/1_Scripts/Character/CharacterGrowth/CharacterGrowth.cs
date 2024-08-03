@@ -18,10 +18,18 @@ public class CharacterGrowth : MonoBehaviour
     public GrowthStageData LastGrowthStageData => characterGrowthDataSO.growthStageDatas[characterGrowthDataSO.growthStageDatas.Count - 1];
     public GrowthStageData CurrentGrowthStageData => characterGrowthDataSO.growthStageDatas[growthStage];
 
+    [Header("Debug")]
+    [SerializeField] private int startingGrowthStage = 0;
+
 
     private void OnDestroy()
     {
         OnGrowthStageUpdated = null;
+    }
+
+    private void Start()
+    {
+        SetGrowthStage(startingGrowthStage);
     }
 
 
@@ -35,6 +43,8 @@ public class CharacterGrowth : MonoBehaviour
             growthStage++;
             UpdateGrowth(growthStage);
             growthPercentage = 0f;
+
+            ScoreSystem.Instance.IncrementScore(120);
         }
 
         // for use when character touched a border an drops the items
@@ -59,6 +69,8 @@ public class CharacterGrowth : MonoBehaviour
             if(TryGetRandomGrowthItemInList(out CharacterGrowthItem growthItem))
             {
                 Drop(growthItem);
+
+                ScoreSystem.Instance.DecrementScore(20);
             }
         }
     }

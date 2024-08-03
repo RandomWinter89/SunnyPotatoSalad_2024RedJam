@@ -7,7 +7,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] CharacterGrowthDataSO _characterGrowth;
 
 #region <<<Variable>>>
-    [SerializeField] VariableJoystick _variableJS;
+    [SerializeField] Joystick _joystick;
 
     //#Rigidbody
     private Rigidbody _rigidbody;
@@ -15,6 +15,9 @@ public class CharacterMovement : MonoBehaviour
     //#Controller Value
     private Vector3 _horizontal;
     private Vector3 _vertical;
+
+
+    public Vector2 Input { get {  return new Vector2(_joystick.Horizontal, _joystick.Vertical); } }
 
     //#Run Value
     [SerializeField] private float _maximumRunSpeed = 5.5f;
@@ -40,8 +43,8 @@ public class CharacterMovement : MonoBehaviour
     private void HandleRun()
     {
         //Input data
-        _horizontal = Vector3.right * _variableJS.Horizontal;
-        _vertical = Vector3.forward * _variableJS.Vertical;
+        _horizontal = Vector3.right * _joystick.Horizontal;
+        _vertical = Vector3.forward * _joystick.Vertical;
         Vector3 _direction = _horizontal + _vertical;
 
         _rigidbody.AddForce(_direction.normalized * _maximumRunSpeed * 10f, ForceMode.Force);
