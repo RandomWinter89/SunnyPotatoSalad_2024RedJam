@@ -99,7 +99,7 @@ namespace EasyTransition
             SceneManager.sceneLoaded += OnSceneLoad;
         }
 
-        public void OnSceneLoad(Scene scene, LoadSceneMode mode)
+        public void OnSceneLoad(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
         {
             //Checking if this transition instance has allready played
             if (hasTransitionTriggeredOnce) return;
