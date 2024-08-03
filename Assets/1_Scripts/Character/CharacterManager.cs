@@ -48,6 +48,9 @@ public class CharacterManager : MonoBehaviour
         // Update Scale
         characterTransform.localScale = Vector3.one * characterConfig.scale;
 
+        // Update Manueraveriablity
+        characterMovement.SetManuevarability(characterConfig.manueverability);
+
         // Update Camera Zoom
     }
 }

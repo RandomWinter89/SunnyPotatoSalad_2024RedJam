@@ -15,7 +15,7 @@ public class CharacterMovement : MonoBehaviour
     //#Controller Value
     private Vector3 _horizontal;
     private Vector3 _vertical;
-    private Vector3 _prevDirection;
+    private Vector3 _prevForce;
 
 
     public Vector2 Input { get {  return new Vector2(_joystick.Horizontal, _joystick.Vertical); } }
@@ -28,6 +28,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float _decceleration = 3.85f;
 
     private float _speedMultiplier = 1f;
+    private float _maneuvarability = 1f;
 
     //#Condition
     private bool _inStunned;
@@ -47,20 +48,19 @@ public class CharacterMovement : MonoBehaviour
 
     protected virtual void HandleRun()
     {
-        //Input data
-        _horizontal = Vector3.right * _joystick.Horizontal;
-        _vertical = Vector3.forward * _joystick.Vertical;
-        Vector3 _direction = _horizontal + _vertical;
+        Vector2 input = new Vector2(_joystick.Horizontal, _joystick.Vertical);
+        Vector2 movement = input.normalized * _baseSpeed * _speedMultiplier * 10f;
 
         // if no input, keep going the previous direction
-        if(_direction == Vector3.zero)
+        if (input == Vector2.zero)
         {
-            _rigidbody.AddForce(_prevDirection * _baseSpeed * _speedMultiplier * 10f, ForceMode.Force);
+            _rigidbody.AddForce(_prevForce);
             return;
         }
+        Vector3 force = new Vector3(movement.x, 0f, movement.y);
+        _rigidbody.AddForce(force * _maneuvarability);
 
-        _rigidbody.AddForce(_direction.normalized * _baseSpeed * _speedMultiplier * 10f, ForceMode.Force);
-        _prevDirection = _direction;
+        _prevForce = force;
     }
 
     public void GrowthKey(int _keyID)
@@ -72,5 +72,11 @@ public class CharacterMovement : MonoBehaviour
     public void SetSpeedMultiplier(float speedMultiplier)
     {
         this._speedMultiplier = speedMultiplier;
+    }
+
+    public void SetManuevarability(float manuevarability)
+    {
+        manuevarability = Mathf.Clamp(manuevarability, .3f, 1f);
+        this._maneuvarability = manuevarability;
     }
 }

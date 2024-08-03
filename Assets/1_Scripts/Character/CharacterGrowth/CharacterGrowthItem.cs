@@ -20,7 +20,7 @@ public class CharacterGrowthItem : MonoBehaviour
 
     [SerializeField] private UnityEvent onCollected;
 
-    public static System.Action OnCollectedAction;
+    public static System.Action<CharacterGrowthItem> OnCollectedAction;
 
 
     private void OnDestroy()
@@ -50,7 +50,7 @@ public class CharacterGrowthItem : MonoBehaviour
         characterGrowth.IncreaseGrowth(this);
         ScoreSystem.Instance.IncrementScore(35);
 
-        if (OnCollectedAction != null) OnCollectedAction.Invoke();
+        if (OnCollectedAction != null) OnCollectedAction.Invoke(this);
         if (onCollected != null) onCollected.Invoke();
 
         scoreItem.UpdateScore();
