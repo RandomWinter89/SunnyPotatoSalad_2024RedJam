@@ -5,10 +5,12 @@ using UnityEngine.AI;
 
 public class AISpawner : MonoBehaviour
 {
-    [SerializeField] GameObject _enemyPrefab;
+    [SerializeField] GameObject[] _enemyPrefab;
+    private GameObject[] _enemyPool;
+    private bool _hasfullySpawned;
 
     //Spawn delay
-    [SerializeField] private float _nextSpawnTimer = 2.5f;
+    [SerializeField] private float _nextSpawnTimer = 5.25f;
     private int _squashedEnemies; 
 
     //maximum enemies
@@ -17,15 +19,20 @@ public class AISpawner : MonoBehaviour
 
     public NavMeshTriangulation _triangulation;
 
+    private void Awake()
+    {
+        _enemyPool = new GameObject[_maximumSpawnCap];
+    }
+
     private void Start()
     {
         _triangulation = NavMesh.CalculateTriangulation();
-
         StartCoroutine(OnHandle_Spawner(_maximumSpawnCap));
     }
 
     private IEnumerator OnHandle_Spawner(int _spawnAmount)
     {
+        _hasfullySpawned = false;
         WaitForSeconds _wait = new WaitForSeconds(_nextSpawnTimer);
 
         while (_spawnedEnemies < _spawnAmount)
@@ -37,22 +44,22 @@ public class AISpawner : MonoBehaviour
         }
 
         _squashedEnemies = 0;
+        _hasfullySpawned = true;
     }
 
     private void Execute_SpawnEnemies()
     {
         int _vertixIndex = Random.Range(0, _triangulation.vertices.Length);
+        int _selectEnemies = Random.Range(0, _enemyPrefab.Length);
 
         UnityEngine.AI.NavMeshHit _hit;
 
-        Debug.Log("Spawning: " + _triangulation);
         if ( UnityEngine.AI.NavMesh.SamplePosition(_triangulation.vertices[_vertixIndex], out _hit, 2.0f, -1) )
         {
-            Debug.Log("Found");
-            GameObject _newbie = Instantiate(_enemyPrefab, _hit.position, Quaternion.identity);
-            CharacterManager_AI _enemiesManager = _newbie.GetComponent<CharacterManager_AI>();
-            CharacterMovement_AI _enemiesMovement = _newbie.GetComponent<CharacterMovement_AI>();
-
+            _enemyPool[_spawnedEnemies] = Instantiate(_enemyPrefab[_selectEnemies], _hit.position, Quaternion.identity);
+            CharacterManager_AI _enemiesManager = _enemyPool[_spawnedEnemies].GetComponent<CharacterManager_AI>();
+            CharacterMovement_AI _enemiesMovement = _enemyPool[_spawnedEnemies].GetComponent<CharacterMovement_AI>();
+            
             _enemiesManager.OnDead += OnCountDeath;
 
             _enemiesMovement._getterAgent.Warp(_hit.position);
@@ -62,16 +69,22 @@ public class AISpawner : MonoBehaviour
 
     private void OnCountDeath()
     {
-        _squashedEnemies += 1;
-
-        if (_squashedEnemies > 1)
-            StartCoroutine(RespawnEnemies());
+        _squashedEnemies++;
+        StartCoroutine(RespawnEnemies());
     }
 
     private IEnumerator RespawnEnemies()
     {
-        yield return new WaitForSeconds (2.5f);
+        yield return new WaitForSeconds (15f);
 
-        StartCoroutine(OnHandle_Spawner(_squashedEnemies));
+        foreach(GameObject _enemy in _enemyPool)
+        {
+            if (_enemy.activeInHierarchy)
+                continue;
+
+            _enemy.SetActive(true);
+            _squashedEnemies--;
+        }
     }
+
 }

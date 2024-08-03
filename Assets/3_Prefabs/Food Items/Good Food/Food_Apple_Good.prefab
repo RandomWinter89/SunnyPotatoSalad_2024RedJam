@@ -67,6 +67,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Food_Apple_Good
       objectReference: {fileID: 0}
+    - target: {fileID: 2074134186642238218, guid: 7805e2b4f1ad144cca619061c03635ce,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8128987053625769596, guid: 7805e2b4f1ad144cca619061c03635ce,
         type: 3}
       propertyPath: m_Sprite
