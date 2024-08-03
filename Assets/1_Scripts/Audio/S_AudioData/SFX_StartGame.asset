@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioName: EnterGameplay
   clip: {fileID: 8300000, guid: 2409c9fccbf3f1645833989a07c433fc, type: 3}
-  volume: 0
+  volume: 0.615
   loop: 0

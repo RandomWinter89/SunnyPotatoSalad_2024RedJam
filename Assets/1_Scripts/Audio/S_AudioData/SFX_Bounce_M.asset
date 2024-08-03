@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioName: MediumBounce
   clip: {fileID: 8300000, guid: 3027008ede23e9d4e8a771bcf5b47550, type: 3}
-  volume: 0
+  volume: 0.5
   loop: 0

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioName: SelectButton2
   clip: {fileID: 8300000, guid: 5dea267c28ee6274192e0242751e05bb, type: 3}
-  volume: 0
+  volume: 0.625
   loop: 0

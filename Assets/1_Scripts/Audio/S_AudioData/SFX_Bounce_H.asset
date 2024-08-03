@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioName: HeavyBounce
   clip: {fileID: 8300000, guid: 9a3fac4777aa0cf40ac7a542b94d214f, type: 3}
-  volume: 0
+  volume: 0.5
   loop: 0

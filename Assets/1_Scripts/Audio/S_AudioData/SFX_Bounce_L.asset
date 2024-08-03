@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioName: LightBounce
   clip: {fileID: 8300000, guid: 7dd9a79de1596464a8f48ab6e59ae41c, type: 3}
-  volume: 0
+  volume: 0.5
   loop: 0
