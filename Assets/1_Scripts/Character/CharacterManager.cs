@@ -18,11 +18,16 @@ public class CharacterManager : MonoBehaviour
 
     public CharacterConfig CharacterConfig { get; set; }
 
+    public static CharacterManager Instance;
+
+    public CharacterGrowth CharacterGrowth => characterGrowth;
 
     private void Awake()
     {
         characterGrowth.OnGrowthStageUpdated += OnGrowthStageUpdated;
         OnGrowthStageUpdated(characterGrowth.FirstGrowthStageData);
+
+        Instance = this;
     }
 
     private void Update()

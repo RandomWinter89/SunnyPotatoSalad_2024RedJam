@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CharacterGrowth : MonoBehaviour
 {
-    [SerializeField] CharacterGrowthDataSO characterGrowthDataSO;
+    [SerializeField] private CharacterGrowthDataSO characterGrowthDataSO;
     [SerializeField, NaughtyAttributes.ReadOnly] private int growthStage = 0;
     [SerializeField, NaughtyAttributes.ReadOnly, NaughtyAttributes.ProgressBar(1f)] private float growthPercentage;
     [SerializeField, NaughtyAttributes.ReadOnly] private List<CharacterGrowthItem> collectedGrowthItems = new();
@@ -17,6 +17,7 @@ public class CharacterGrowth : MonoBehaviour
     public GrowthStageData FirstGrowthStageData => characterGrowthDataSO.growthStageDatas[0];
     public GrowthStageData LastGrowthStageData => characterGrowthDataSO.growthStageDatas[characterGrowthDataSO.growthStageDatas.Count - 1];
     public GrowthStageData CurrentGrowthStageData => characterGrowthDataSO.growthStageDatas[growthStage];
+    public int GrowthStage => growthStage;
 
     [Header("Debug")]
     [SerializeField] private int startingGrowthStage = 0;
@@ -47,8 +48,6 @@ public class CharacterGrowth : MonoBehaviour
 
                 UpdateGrowth(growthStage);
                 growthPercentage = 0f;
-
-                ScoreSystem.Instance.IncrementScore(120);
             }
         }
 
@@ -68,14 +67,17 @@ public class CharacterGrowth : MonoBehaviour
         growthPercentage -= amount;
         growthPercentage = Mathf.Clamp01(growthPercentage);
 
+
+    }
+
+    public void DropGrowthItems()
+    {
         // drop items
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
-            if(TryGetRandomGrowthItemInList(out CharacterGrowthItem growthItem))
+            if (TryGetRandomGrowthItemInList(out CharacterGrowthItem growthItem))
             {
                 Drop(growthItem);
-
-                ScoreSystem.Instance.DecrementScore(20);
             }
         }
     }

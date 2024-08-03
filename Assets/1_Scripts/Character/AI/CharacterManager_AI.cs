@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class CharacterManager_AI : MonoBehaviour
@@ -15,6 +16,8 @@ public class CharacterManager_AI : MonoBehaviour
     public CharacterConfig CharacterConfig { get; set; }
 
     private bool _isDead = false;
+
+    public event Action OnDead;
 
     private void OnDisable()
     {
@@ -60,6 +63,9 @@ public class CharacterManager_AI : MonoBehaviour
         // stop physics
         collider.enabled = false;
 
+        // inform spawner
+        OnDead?.Invoke();
+
         StartCoroutine(DisableAfterDeathRoutine());
     }
 
@@ -68,4 +74,6 @@ public class CharacterManager_AI : MonoBehaviour
         yield return new WaitForSeconds(3f);
         gameObject.SetActive(false);
     }
+
+
 }
