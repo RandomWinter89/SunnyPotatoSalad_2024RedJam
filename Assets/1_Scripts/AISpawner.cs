@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class AISpawner : MonoBehaviour
 {
-    [SerializeField] GameObject _enemyPrefab;
+    [SerializeField] GameObject[] _enemyPrefab;
 
     //Spawn delay
     [SerializeField] private float _nextSpawnTimer = 2.5f;
@@ -42,6 +42,7 @@ public class AISpawner : MonoBehaviour
     private void Execute_SpawnEnemies()
     {
         int _vertixIndex = Random.Range(0, _triangulation.vertices.Length);
+        int _selectEnemies = Random.Range(0, _enemyPrefab.Length);
 
         UnityEngine.AI.NavMeshHit _hit;
 
@@ -49,7 +50,7 @@ public class AISpawner : MonoBehaviour
         if ( UnityEngine.AI.NavMesh.SamplePosition(_triangulation.vertices[_vertixIndex], out _hit, 2.0f, -1) )
         {
             Debug.Log("Found");
-            GameObject _newbie = Instantiate(_enemyPrefab, _hit.position, Quaternion.identity);
+            GameObject _newbie = Instantiate(_enemyPrefab[_selectEnemies], _hit.position, Quaternion.identity);
             CharacterManager_AI _enemiesManager = _newbie.GetComponent<CharacterManager_AI>();
             CharacterMovement_AI _enemiesMovement = _newbie.GetComponent<CharacterMovement_AI>();
 
