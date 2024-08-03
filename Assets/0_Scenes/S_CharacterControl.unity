@@ -595,12 +595,12 @@ PrefabInstance:
     - target: {fileID: 3881087803549984436, guid: ec536a7718376554185e4a856d5ae230,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3881087803549984436, guid: ec536a7718376554185e4a856d5ae230,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3881087803549984436, guid: ec536a7718376554185e4a856d5ae230,
         type: 3}
@@ -615,12 +615,12 @@ PrefabInstance:
     - target: {fileID: 3881087803549984436, guid: ec536a7718376554185e4a856d5ae230,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 960
+      value: -200
       objectReference: {fileID: 0}
     - target: {fileID: 3881087803549984436, guid: ec536a7718376554185e4a856d5ae230,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 1080
+      value: -250
       objectReference: {fileID: 0}
     - target: {fileID: 3881087803549984436, guid: ec536a7718376554185e4a856d5ae230,
         type: 3}
@@ -660,12 +660,12 @@ PrefabInstance:
     - target: {fileID: 3881087803549984436, guid: ec536a7718376554185e4a856d5ae230,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3881087803549984436, guid: ec536a7718376554185e4a856d5ae230,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3881087803549984436, guid: ec536a7718376554185e4a856d5ae230,
         type: 3}
@@ -690,6 +690,11 @@ PrefabInstance:
     - target: {fileID: 3881087803549984437, guid: ec536a7718376554185e4a856d5ae230,
         type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881087803549984439, guid: ec536a7718376554185e4a856d5ae230,
+        type: 3}
+      propertyPath: joystickType
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3881087803815115470, guid: ec536a7718376554185e4a856d5ae230,
@@ -741,12 +746,12 @@ PrefabInstance:
     - target: {fileID: 3881087803815115471, guid: ec536a7718376554185e4a856d5ae230,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 256
+      value: 768
       objectReference: {fileID: 0}
     - target: {fileID: 3881087803815115471, guid: ec536a7718376554185e4a856d5ae230,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 256
+      value: 524
       objectReference: {fileID: 0}
     - target: {fileID: 3881087804030458062, guid: ec536a7718376554185e4a856d5ae230,
         type: 3}
@@ -812,6 +817,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 183541547, guid: d98f71cde7ee74a00912522d912f265b, type: 3}
+      propertyPath: characterMovement
+      value: 
+      objectReference: {fileID: 554593424}
+    - target: {fileID: 183541549, guid: d98f71cde7ee74a00912522d912f265b, type: 3}
+      propertyPath: _joystick
+      value: 
+      objectReference: {fileID: 2024969264}
     - target: {fileID: 3038988410796403859, guid: d98f71cde7ee74a00912522d912f265b,
         type: 3}
       propertyPath: m_IsActive
@@ -917,11 +930,11 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 554593416}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &554593424
+--- !u!114 &554593424 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 183541549, guid: d98f71cde7ee74a00912522d912f265b,
+    type: 3}
+  m_PrefabInstance: {fileID: 554593416}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554593417}
   m_Enabled: 1
@@ -929,11 +942,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6bd68ba545efdb4c8f38b16b25674bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterGrowth: {fileID: 0}
-  _variableJS: {fileID: 2024969264}
-  _maximumRunSpeed: 5.5
-  _acceleration: 2.5
-  _decceleration: 3.85
 --- !u!1 &657182098
 GameObject:
   m_ObjectHideFlags: 0
