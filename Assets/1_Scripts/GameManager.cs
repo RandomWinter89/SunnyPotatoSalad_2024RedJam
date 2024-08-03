@@ -1,12 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private TimeSystem timeSystem;
-    [SerializeField] private ScoreSystem scoreSystem;
+    [SerializeField] private RectTransform hud;
+
+   // [SerializeField] private TimeSystem timeSystem;
+  //  [SerializeField] private ScoreSystem scoreSystem;
     [SerializeField] private PointsTallySystem pointsTallySystem;
+
+    [SerializeField] private PauseMenu pauseMenu;
+
+
+
+
 
     // handle pause menu
     // handle player hud
@@ -16,20 +25,36 @@ public class GameManager : MonoBehaviour
     private void OnDestroy()
     {
         EndGame -= OnGameEnded;
+
+
     }
 
     private void Awake()
     {
         pointsTallySystem.gameObject.SetActive(false);
         EndGame += OnGameEnded;
+
+        PauseMenu.OnPausedStateChanged += OnPauseStateChanged;
+
+    
     }
 
     public void OnGameEnded()
     {
         pointsTallySystem.gameObject.SetActive(true);
-        timeSystem.gameObject.SetActive(false);
-        scoreSystem.gameObject.SetActive(false);
+
+        pauseMenu.gameObject.SetActive(false);
     }
 
-  
+    private void OnPauseStateChanged(bool paused)
+    {
+        if (paused)
+        {
+            hud.gameObject.SetActive(false);
+        }
+        else
+        {
+            hud.gameObject.SetActive(true);
+        }
+    }
 }
