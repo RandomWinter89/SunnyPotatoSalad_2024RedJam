@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterGrowthDisruptor : MonoBehaviour
 {
     [SerializeField] private float growthDecreaseAmount = .4f;
+    [SerializeField] private bool dropsFood = false;
 
     private void OnCollisionEnter(Collision other)
     {
@@ -12,7 +13,9 @@ public class CharacterGrowthDisruptor : MonoBehaviour
         {
             CharacterGrowth characterGrowth = other.collider.transform.parent.GetComponent<CharacterGrowth>();
             characterGrowth.DecreaseGrowth(growthDecreaseAmount);
-            characterGrowth.DropGrowthItems();
+
+            if(dropsFood)
+                characterGrowth.DropGrowthItems();
         }
     }
 }

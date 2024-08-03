@@ -48,8 +48,6 @@ public class CharacterGrowth : MonoBehaviour
 
                 UpdateGrowth(growthStage);
                 growthPercentage = 0f;
-
-                ScoreSystem.Instance.IncrementScore(120);
             }
         }
 
@@ -80,8 +78,6 @@ public class CharacterGrowth : MonoBehaviour
             if (TryGetRandomGrowthItemInList(out CharacterGrowthItem growthItem))
             {
                 Drop(growthItem);
-
-                ScoreSystem.Instance.DecrementScore(20);
             }
         }
     }

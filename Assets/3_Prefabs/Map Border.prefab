@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growthDecreaseAmount: 0.4
+  dropsFood: 1
 --- !u!1 &3688533645935375843
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,6 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growthDecreaseAmount: 0.4
+  dropsFood: 1
 --- !u!1 &8246061810052833118
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,6 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growthDecreaseAmount: 0.4
+  dropsFood: 1
 --- !u!1 &9051664009653160437
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,3 +482,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growthDecreaseAmount: 0.4
+  dropsFood: 1

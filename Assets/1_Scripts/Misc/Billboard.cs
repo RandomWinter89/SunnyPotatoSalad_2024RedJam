@@ -22,7 +22,7 @@ public class Billboard : MonoBehaviour
         Vector3 eulerAngles = rotation.eulerAngles;
 
         // restrict how tilted the x-axis can be (90 degrees is upright)
-        eulerAngles = new Vector3(Mathf.Clamp(eulerAngles.x, 90 - 45, 90 + 45), eulerAngles.y, 0f);
+        eulerAngles = new Vector3(Mathf.Clamp(eulerAngles.x, 0 - 45, 0 + 45), eulerAngles.y, 0f);
 
 
         transform.rotation = Quaternion.Euler(eulerAngles);
