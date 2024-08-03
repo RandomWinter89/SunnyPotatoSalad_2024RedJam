@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using AYellowpaper.SerializedCollections;
+using System.Security.Cryptography.X509Certificates;
 
 
 public class CharacterAnimationMonitor : MonoBehaviour
@@ -34,10 +35,16 @@ public class CharacterAnimationMonitor : MonoBehaviour
         if (input == Vector2.zero)
         {
             if(_prevAnimationClipData == null)
+            {
                 SetAnimationClip(animationClipDatas[Directions.Right]);
+            }
+            anim.speed = 0f;
+            anim.PlayLastFrame();
         }
         else
         {
+            anim.speed = 1f;
+
             if (Mathf.Abs(input.x) > Mathf.Abs(input.y))
             {
                 // Horizontal movement has priority
