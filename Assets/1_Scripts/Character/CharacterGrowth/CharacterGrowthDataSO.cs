@@ -24,7 +24,9 @@ public class GrowthStageData
         { Directions.Right, null},
     };
 
-    public float speed = 1f;
+    public SerializedDictionary<string, AnimationClipData> specialAnimationClipDatas = new();
+
+    public float speedMultiplier = 1f;
     public float manueverability = 1f;
     public float scale = 1f;
     public float cameraZoom;
@@ -43,4 +45,7 @@ public class AnimationClipData
 {
     public string clipName;
     public bool flip;
+
+    [Tooltip("Higher values is higher priority")]
+    public float priority;
 }

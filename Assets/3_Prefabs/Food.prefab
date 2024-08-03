@@ -165,6 +165,7 @@ MonoBehaviour:
   growthAmount: 0.3
   canBeCollectedCooldown: 1
   canBeCollected: 1
+  disappearDelay: 5
 --- !u!1 &2074134187394756932
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,7 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2074134187394756931}
   - component: {fileID: 2074134187394756930}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

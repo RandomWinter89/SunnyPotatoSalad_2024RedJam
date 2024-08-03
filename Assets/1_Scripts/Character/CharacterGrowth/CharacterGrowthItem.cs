@@ -30,13 +30,13 @@ public class CharacterGrowthItem : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.CompareTag("Player"))
+        if (other.collider.CompareTag("Player"))
         {
             if (!canBeCollected) return;
 
-            CharacterGrowth characterGrowth = other.transform.parent.GetComponent<CharacterGrowth>();
+            CharacterGrowth characterGrowth = other.collider.transform.parent.GetComponent<CharacterGrowth>();
             OnCollected(characterGrowth);
         }
     }
