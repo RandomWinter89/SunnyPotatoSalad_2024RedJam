@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 using static PlayerPrefKeys;
 
 public class LoginManager : MonoBehaviour
@@ -14,6 +15,8 @@ public class LoginManager : MonoBehaviour
     [SerializeField] private TMP_InputField emailInput;
     [SerializeField] private TMP_InputField passwordInput;
     [SerializeField] private Button loginButton;
+
+    public static Action OnLogin;
 
     private void Awake()
     {
@@ -38,9 +41,11 @@ public class LoginManager : MonoBehaviour
 
     public void GoToMenu()
     {
+        OnLogin?.Invoke();
+
         PlayerPrefs.SetString(EMAIL, emailInput.text);
         PlayerPrefs.SetString(PASSWORD, passwordInput.text);
 
-        SceneLoader.instance.Load(Scene.Menu);
+        SceneLoader.instance.Load(Scene.Menu, DataManager.main.LoadPlayerDataRoutine());
     }
 }
