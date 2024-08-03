@@ -18,10 +18,18 @@ public class CharacterGrowth : MonoBehaviour
     public GrowthStageData LastGrowthStageData => characterGrowthDataSO.growthStageDatas[characterGrowthDataSO.growthStageDatas.Count - 1];
     public GrowthStageData CurrentGrowthStageData => characterGrowthDataSO.growthStageDatas[growthStage];
 
+    [Header("Debug")]
+    [SerializeField] private int startingGrowthStage = 0;
+
 
     private void OnDestroy()
     {
         OnGrowthStageUpdated = null;
+    }
+
+    private void Start()
+    {
+        SetGrowthStage(startingGrowthStage);
     }
 
 
