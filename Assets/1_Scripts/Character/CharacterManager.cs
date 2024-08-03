@@ -27,7 +27,7 @@ public class CharacterManager : MonoBehaviour
 
     private void Update()
     {
-        animationMonitor.UpdateAnimation(characterMovement.Input);
+        animationMonitor.UpdateAnimation(characterMovement.Velocity);
     }
 
     private void OnGrowthStageUpdated(GrowthStageData growthStageData)
@@ -35,48 +35,16 @@ public class CharacterManager : MonoBehaviour
         CharacterConfig characterConfig = new CharacterConfig(growthStageData);
 
         // Update Sprites
-        animationMonitor.UpdateSprites(characterConfig.animationClipDatas);
+        animationMonitor.UpdateSprites(characterConfig);
 
         // Update Speed
+        characterMovement.SetSpeedMultiplier(characterConfig.speedMultiplier);
 
         // Update Scale
         characterTransform.localScale = Vector3.one * characterConfig.scale;
 
         // Update Camera Zoom
     }
-
-    private void SetCharacterScale(float scale)
-    {
-        // placeholder implementation
-        characterTransform.localScale = Vector3.one * scale;
-    }
-
-    private void SetCharacterSpeed(float speed)
-    {
-        // implementation
-    }
-
-    private void SetCameraZoom(float zoom)
-    {
-        // implementation
-    }
 }
 
 
-public class CharacterConfig
-{
-    public SerializedDictionary<Directions, AnimationClipData> animationClipDatas = new();
-    public float speed = 1f;
-    public float manueverability = 1f;
-    public float scale = 1f;
-    public float cameraZoom = 10f;
-
-    public CharacterConfig(GrowthStageData growthStageData)
-    {
-        this.animationClipDatas = growthStageData.animationClipDatas;
-        this.speed = growthStageData.speed;
-        this.manueverability = growthStageData.manueverability;
-        this.scale = growthStageData.scale;
-        this.cameraZoom = growthStageData.cameraZoom;
-    }
-}

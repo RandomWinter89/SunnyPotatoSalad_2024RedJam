@@ -40,11 +40,16 @@ public class CharacterGrowth : MonoBehaviour
 
         if (growthPercentage >= 1)
         {
-            growthStage++;
-            UpdateGrowth(growthStage);
-            growthPercentage = 0f;
+            // if hasnt reached the last element
+            if (growthStage + 1 < characterGrowthDataSO.growthStageDatas.Count)
+            {
+                growthStage++;
 
-            ScoreSystem.Instance.IncrementScore(120);
+                UpdateGrowth(growthStage);
+                growthPercentage = 0f;
+
+                ScoreSystem.Instance.IncrementScore(120);
+            }
         }
 
         // for use when character touched a border an drops the items

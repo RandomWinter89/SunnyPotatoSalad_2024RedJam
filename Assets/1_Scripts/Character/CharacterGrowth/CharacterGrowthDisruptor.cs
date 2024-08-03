@@ -6,11 +6,11 @@ public class CharacterGrowthDisruptor : MonoBehaviour
 {
     [SerializeField] private float growthDecreaseAmount = .4f;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.CompareTag("Player"))
+        if (other.collider.CompareTag("Player"))
         {
-            other.transform.parent.GetComponent<CharacterGrowth>().DecreaseGrowth(growthDecreaseAmount);
+            other.collider.transform.parent.GetComponent<CharacterGrowth>().DecreaseGrowth(growthDecreaseAmount);
         }
     }
 }

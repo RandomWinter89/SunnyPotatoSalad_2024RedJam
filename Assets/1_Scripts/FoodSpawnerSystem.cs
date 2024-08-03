@@ -12,7 +12,7 @@ public class FoodSpawnerSystem : MonoBehaviour
 
     private void Awake()
     {
-        CharacterGrowthItem.OnCollectedAction += OnFoodCollected;
+        DisableAllFood();
         UpdateActiveFood();
     }
 
@@ -21,15 +21,9 @@ public class FoodSpawnerSystem : MonoBehaviour
         UpdateActiveFood();
     }
 
-    private void OnFoodCollected()
-    {
-        activeFood = null;
-        UpdateActiveFood();
-    }
-
     private void UpdateActiveFood()
     {
-        if (activeFood != null) return;
+        if (HasActiveFood()) return;
 
         DisableAllFood();
         //foodsNearPlayer.Clear();
@@ -61,5 +55,15 @@ public class FoodSpawnerSystem : MonoBehaviour
         {
             food.gameObject.SetActive(false);
         }
+    }
+
+    private bool HasActiveFood()
+    {
+        foreach(CharacterGrowthItem food in allFoods)
+        {
+            if (food.gameObject.activeInHierarchy) return true;
+        }
+
+        return false;
     }
 }
