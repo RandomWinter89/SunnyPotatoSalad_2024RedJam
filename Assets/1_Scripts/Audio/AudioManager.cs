@@ -14,6 +14,9 @@ public class AudioManager : MonoBehaviour
     public AudioSource _musicSource;
     public AudioSource _sfxSource;
 
+    private float _MusicVolume = 1f;
+    private float _SFXVolume = 1f;
+
     private void Awake()
     {
         if (instance != null)
@@ -43,6 +46,7 @@ public class AudioManager : MonoBehaviour
         }
 
         _musicSource.clip = _sound.clip;
+        _musicSource.volume = _sound.volume * _MusicVolume;
         _musicSource.loop = _sound.loop;
         
         if (_toActivate)
@@ -60,7 +64,9 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("Error: This SFX audio, " + _name + ". NOT FOUND");
             return;
         }
+        
         _sfxSource.clip = _sound.clip;
+        _sfxSource.volume = _sound.volume * _SFXVolume;
     
         if (_toActivate)
             _musicSource.Play();
@@ -82,12 +88,18 @@ public class AudioManager : MonoBehaviour
     
     public void OnModified_MusicVolume(float _volume)
     {
-        _musicSource.volume = _volume;
+        float _preMusicVolume = _musicSource.volume / _MusicVolume;
+
+        _MusicVolume = _volume;
+        _musicSource.volume = _preMusicVolume * _MusicVolume;
     }
 
     public void OnModified_SFXVolume(float _volume)
     {
-        _sfxSource.volume = _volume;
+        float _preSFXVolume = _sfxSource.volume / _SFXVolume;
+
+        _SFXVolume = _volume;
+        _sfxSource.volume = _preSFXVolume * _SFXVolume;
     }
     #endregion
 }
