@@ -8,6 +8,8 @@ public class CharacterMovement_AI : MonoBehaviour
 {
     [SerializeField] CharacterGrowthDataSO _characterGrowth;
     [SerializeField] private NavMeshAgent agent;
+
+    public NavMeshAgent _getterAgent => agent;
     
 
     public Vector2 Velocity { get { return new Vector2(agent.velocity.x, agent.velocity.z); } }
