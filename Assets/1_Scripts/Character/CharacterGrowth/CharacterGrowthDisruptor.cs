@@ -10,7 +10,9 @@ public class CharacterGrowthDisruptor : MonoBehaviour
     {
         if (other.collider.CompareTag("Player"))
         {
-            other.collider.transform.parent.GetComponent<CharacterGrowth>().DecreaseGrowth(growthDecreaseAmount);
+            CharacterGrowth characterGrowth = other.collider.transform.parent.GetComponent<CharacterGrowth>();
+            characterGrowth.DecreaseGrowth(growthDecreaseAmount);
+            characterGrowth.DropGrowthItems();
         }
     }
 }

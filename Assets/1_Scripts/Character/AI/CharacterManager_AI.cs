@@ -68,4 +68,6 @@ public class CharacterManager_AI : MonoBehaviour
         yield return new WaitForSeconds(3f);
         gameObject.SetActive(false);
     }
+
+
 }

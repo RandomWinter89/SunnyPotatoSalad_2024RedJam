@@ -11,11 +11,10 @@ GameObject:
   - component: {fileID: 8244657084343944868}
   - component: {fileID: 8244657084343944870}
   - component: {fileID: 8244657084343944869}
-  - component: {fileID: 1981557091258510300}
-  - component: {fileID: 4912786175827447938}
+  - component: {fileID: 7017710722433854878}
   m_Layer: 6
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,7 +66,7 @@ PositionConstraint:
   m_Sources:
   - sourceTransform: {fileID: 8244657085071864282}
     weight: 1
---- !u!114 &1981557091258510300
+--- !u!114 &7017710722433854878
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -76,46 +75,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8244657084343944875}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea327cde7b2934052ae585effb8b268a, type: 3}
+  m_Script: {fileID: 11500000, guid: ff904c8c8da414e2bbf9fe781ec16caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growthDecreaseAmount: 0.4
---- !u!114 &4912786175827447938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8244657084343944875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 935222bb3e7e14ffda41a531589b4261, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tags:
-  - Player
-  triggerOnce: 1
-  onCollisionEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8244657084406360680}
-        m_TargetAssemblyTypeName: CharacterManager_AI, Assembly-CSharp
-        m_MethodName: Die
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onCollisionStay:
-    m_PersistentCalls:
-      m_Calls: []
-  onCollisionExit:
-    m_PersistentCalls:
-      m_Calls: []
+  characterManager: {fileID: 8244657084406360680}
 --- !u!1 &8244657084406360686
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,7 +283,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 1749234029, guid: 77f38085d93ab4dc59e7c164a3af98a7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -431,8 +394,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8244657085523278105}
   m_LocalRotation: {x: 0.17364816, y: -0, z: -0, w: 0.9848078}
-  m_LocalPosition: {x: 0.04, y: 0.43, z: -0.89}
-  m_LocalScale: {x: 3, y: 1, z: 3}
+  m_LocalPosition: {x: 0.16, y: 0.43, z: -0.89}
+  m_LocalScale: {x: 2, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8244657084406360676}
@@ -500,8 +463,8 @@ PositionConstraint:
   m_GameObject: {fileID: 8244657085523278105}
   m_Enabled: 1
   m_Weight: 1
-  m_TranslationAtRest: {x: 0.04, y: 0.43, z: -0.89}
-  m_TranslationOffset: {x: 0.04, y: 0.43, z: -0.89}
+  m_TranslationAtRest: {x: 0.16, y: 0.43, z: -0.89}
+  m_TranslationOffset: {x: 0.16, y: 0.43, z: -0.89}
   m_AffectTranslationX: 1
   m_AffectTranslationY: 1
   m_AffectTranslationZ: 1
