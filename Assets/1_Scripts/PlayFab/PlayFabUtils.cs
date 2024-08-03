@@ -9,7 +9,6 @@ using System;
 public static class PlayFabKeys
 {
     public const string TITLE_ID = "BCDB6";
-    public const string L_WAYFARER_BEMELLA = "Wayfarer Bemella";
 }
 
 public static class PlayFabUtils
@@ -19,18 +18,55 @@ public static class PlayFabUtils
     public static IEnumerator Login(string email, string password, Action onLogin)
     {
         bool done = false;
+        PlayFabErrorCode errorCode = PlayFabErrorCode.Success;
 
         PlayFabClientAPI.LoginWithEmailAddress(new LoginWithEmailAddressRequest()
         {
             Email = email,
             Password = password,
-            TitleId = PlayFabKeys.TITLE_ID
+            TitleId = PlayFabKeys.TITLE_ID,
+        },
+        result =>
+        {
+            Debug.Log($"Login success");
+            onLogin?.Invoke();
+            done = true;
+        },
+        error =>
+        {
+            done = true;
+            errorCode = error.Error;
+            Debug.LogError(error.GenerateErrorReport());
+        });
+        
+        while (!done) yield return null;
+
+        if (errorCode == PlayFabErrorCode.AccountNotFound)
+        {
+            yield return Register(email, password);
+            yield return Login(email, password, onLogin);
+        }
+    }
+
+    public static IEnumerator Register(string email, string password)
+    {
+        bool done = false;
+
+        PlayFabClientAPI.RegisterPlayFabUser(new RegisterPlayFabUserRequest()
+        {
+            Email = email,
+            Password = password,
+            TitleId = PlayFabKeys.TITLE_ID,
+            RequireBothUsernameAndEmail = false,
         },
         result =>
         {
             done = true;
         },
-        error => Debug.LogError(error.GenerateErrorReport()));
+        error =>
+        {
+            Debug.LogError(error.GenerateErrorReport());
+        });
 
         while (!done) yield return null;
     }
