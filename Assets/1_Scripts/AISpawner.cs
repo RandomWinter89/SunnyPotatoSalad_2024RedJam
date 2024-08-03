@@ -54,10 +54,8 @@ public class AISpawner : MonoBehaviour
 
         UnityEngine.AI.NavMeshHit _hit;
 
-        Debug.Log("Spawning: " + _triangulation);
         if ( UnityEngine.AI.NavMesh.SamplePosition(_triangulation.vertices[_vertixIndex], out _hit, 2.0f, -1) )
         {
-            Debug.Log("Found");
             _enemyPool[_spawnedEnemies] = Instantiate(_enemyPrefab[_selectEnemies], _hit.position, Quaternion.identity);
             CharacterManager_AI _enemiesManager = _enemyPool[_spawnedEnemies].GetComponent<CharacterManager_AI>();
             CharacterMovement_AI _enemiesMovement = _enemyPool[_spawnedEnemies].GetComponent<CharacterMovement_AI>();
