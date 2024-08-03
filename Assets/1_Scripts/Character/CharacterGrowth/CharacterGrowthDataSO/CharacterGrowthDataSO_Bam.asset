@@ -41,7 +41,7 @@ MonoBehaviour:
         specialAnimationClipDatas:
           _serializedList: []
         speedMultiplier: 1
-        manueverability: 0
+        manueverability: 1
         scale: 1
         cameraZoom: 10
     - Key: 1

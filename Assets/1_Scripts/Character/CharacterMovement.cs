@@ -76,7 +76,9 @@ public class CharacterMovement : MonoBehaviour
 
     public void SetManuevarability(float manuevarability)
     {
+        Debug.Log("before _maneuvarability: " + manuevarability);
         manuevarability = Mathf.Clamp(manuevarability, .3f, 1f);
+        Debug.Log("after _maneuvarability: " + manuevarability);
         this._maneuvarability = manuevarability;
     }
 }
