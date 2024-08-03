@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class FoodSpawnerSystem : MonoBehaviour
 {
+    [SerializeField] private Transform container;
     [SerializeField] private List<CharacterGrowthItem> positiveFoodPrefabs;
     [SerializeField] private List<CharacterGrowthItem> negativeFoodPrefabs;
     [SerializeField] private CharacterManager player;
+    [SerializeField] private Transform spawnPointsContainer;
+    private List<Transform> spawnPoints = new();
 
     private const int MAX_ACTIVE_FOOD_COUNT = 3;
     private const float NEGATIVE_FOOD_PROBABILITY = .3f;
@@ -14,17 +17,48 @@ public class FoodSpawnerSystem : MonoBehaviour
     private const float SPAWN_INTERVAL = 5f;
     private float _nextSpawnTime = 0f;
 
- 
+    private Dictionary<CharacterGrowthItem, Pool> poolDict = new();
+
+    private Dictionary<CharacterGrowthItem, Transform> occupiedPointsDict = new();
+
+    private Pool CreatePool(CharacterGrowthItem food)
+    {
+        Pool pool = new Pool();
+
+        for(int i = 0; i < pool.size; i++)
+        {
+            CharacterGrowthItem created = Instantiate(food, container);
+            created.gameObject.SetActive(false);
+            pool.items.Add(created);
+        }
+
+        return pool;
+    }
+
+
     private void Awake()
     {
+        spawnPoints.Clear();
+        for(int i =0; i < spawnPointsContainer.childCount; i++)
+        {
+            spawnPoints.Add(spawnPointsContainer.GetChild(i));
+        }
+
+        spawnPointsContainer.gameObject.SetActive(false);
+
+
+        CharacterGrowthItem.OnCollectedAction += OnFoodConsumed;
+
+        occupiedPointsDict.Clear();
+
         foreach(CharacterGrowthItem food in positiveFoodPrefabs)
         {
-            food.gameObject.SetActive(false);
+            poolDict.Add(food, CreatePool(food));
         }
 
         foreach (CharacterGrowthItem food in negativeFoodPrefabs)
         {
-            food.gameObject.SetActive(false);
+            poolDict.Add(food, CreatePool(food));
         }
     }
 
@@ -47,40 +81,67 @@ public class FoodSpawnerSystem : MonoBehaviour
         // Determine if we should spawn a negative food item
         bool spawnNegativeFood = Random.value < NEGATIVE_FOOD_PROBABILITY;
 
-        // Choose the appropriate list based on the spawn type
-        List<CharacterGrowthItem> availableFoods = spawnNegativeFood ? negativeFoodPrefabs : positiveFoodPrefabs;
-
-        // Find an inactive food item to activate
-        CharacterGrowthItem foodToActivate = availableFoods.Find(food => !food.gameObject.activeInHierarchy);
-
-        if (foodToActivate != null)
+        CharacterGrowthItem targetFoodItem;
+        if (spawnNegativeFood)
         {
-            // Activate the food item and add it to the list of active foods
-            foodToActivate.gameObject.SetActive(true);
+            targetFoodItem = GetRandomFoodItemFromList(negativeFoodPrefabs);
+
         }
         else
         {
-            Debug.LogWarning("No inactive food items available to spawn.");
+            targetFoodItem = GetRandomFoodItemFromList(positiveFoodPrefabs);
         }
+
+        CharacterGrowthItem spawned = poolDict[targetFoodItem].GetAvailable();
+        spawned.gameObject.SetActive(true);
+
+        Transform spawnPoint = GetRandomPointFromList(spawnPoints);
+        spawned.transform.position = spawnPoint.position;
+
+        occupiedPointsDict.Add(spawned, spawnPoint);
+
+
+    }
+
+    private void OnFoodConsumed(CharacterGrowthItem consumed)
+    {
+        occupiedPointsDict.Remove(consumed);
     }
 
     private bool TooManyActiveFoods()
     {
         int activeFoodCount = 0;
 
-        foreach(CharacterGrowthItem food in positiveFoodPrefabs)
+        for(int i =0; i < container.childCount; i++)
         {
-            if (!food.gameObject.activeInHierarchy) continue;
-            else activeFoodCount++;
-        }
-
-        foreach (CharacterGrowthItem food in negativeFoodPrefabs)
-        {
-            if (!food.gameObject.activeInHierarchy) continue;
-            else activeFoodCount++;
+            if (!container.GetChild(i).gameObject.activeInHierarchy) continue;
+            activeFoodCount++;
         }
 
         if (activeFoodCount >= MAX_ACTIVE_FOOD_COUNT) return true;
         return false;
+    }
+
+    private CharacterGrowthItem GetRandomFoodItemFromList(List<CharacterGrowthItem> list)
+    {
+        int index = Random.Range(0, list.Count);
+        return list[index];
+    }
+
+    private Transform GetRandomPointFromList(List<Transform> list)
+    {
+        int index = Random.Range(0, list.Count);
+        return list[index];
+    }
+}
+
+public class Pool
+{
+    public List<CharacterGrowthItem> items =new();
+    public int size = 10;
+
+    public CharacterGrowthItem GetAvailable()
+    {
+        return items.Find((item) => !item.gameObject.activeInHierarchy);
     }
 }
