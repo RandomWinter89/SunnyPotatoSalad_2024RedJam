@@ -14,9 +14,9 @@ public class FoodSpawnerSystem : MonoBehaviour
     [Header("Ticket")]
     [SerializeField] private TicketItem ticket;
 
-    private const int MAX_ACTIVE_FOOD_COUNT = 5;
+    private const int MAX_ACTIVE_FOOD_COUNT = 10;
     private const float PROBABILITY_NEGATIVE_FOOD = .3f;
-    private const float PROBABILITY_TICKET = 1f;
+    private const float PROBABILITY_TICKET = .1f;
 
     private const float SPAWN_INTERVAL = 5f;
     private float _nextSpawnTime = 0f;
