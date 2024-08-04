@@ -19,7 +19,7 @@ public class FoodSpawnerSystem : MonoBehaviour
 
     private Dictionary<CharacterGrowthItem, Pool> poolDict = new();
 
-    private Dictionary<CharacterGrowthItem, Transform> occupiedPointsDict = new();
+    private static Dictionary<CharacterGrowthItem, Transform> occupiedPointsDict = new();
 
     private Pool CreatePool(CharacterGrowthItem food)
     {
@@ -47,9 +47,8 @@ public class FoodSpawnerSystem : MonoBehaviour
         spawnPointsContainer.gameObject.SetActive(false);
 
 
-        CharacterGrowthItem.OnCollectedAction += OnFoodConsumed;
-
         occupiedPointsDict.Clear();
+        CharacterGrowthItem.OnCollectedAction += OnFoodConsumed;
 
         foreach(CharacterGrowthItem food in positiveFoodPrefabs)
         {
@@ -103,9 +102,10 @@ public class FoodSpawnerSystem : MonoBehaviour
 
     }
 
-    private void OnFoodConsumed(CharacterGrowthItem consumed)
+
+    public static void OnFoodConsumed(CharacterGrowthItem food)
     {
-        occupiedPointsDict.Remove(consumed);
+        occupiedPointsDict.Remove(food);
     }
 
     private bool TooManyActiveFoods()

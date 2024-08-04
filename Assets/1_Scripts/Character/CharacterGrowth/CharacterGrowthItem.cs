@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class CharacterGrowthItem : MonoBehaviour
 {
+    [SerializeField] private bool isNegative = false;
     [SerializeField] private ScoreItem scoreItem;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Vector2 dropForceMinMax = new Vector2(5, 10);
@@ -47,13 +48,18 @@ public class CharacterGrowthItem : MonoBehaviour
 
     private void OnCollected(CharacterGrowth characterGrowth)
     {
-        characterGrowth.IncreaseGrowth(this);
-        ScoreSystem.Instance.IncrementScore(35);
+        if (isNegative)
+        {
+            characterGrowth.DecreaseGrowth(growthAmount);
+        }
+        else
+        {
+            characterGrowth.IncreaseGrowth(this);
+        }
+        scoreItem.UpdateScore();
 
         if (OnCollectedAction != null) OnCollectedAction.Invoke(this);
         if (onCollected != null) onCollected.Invoke();
-
-        scoreItem.UpdateScore();
 
         gameObject.SetActive(false);
     }
