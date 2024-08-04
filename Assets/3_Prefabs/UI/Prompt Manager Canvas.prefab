@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9192440848550412303}
   - component: {fileID: 9192440848550412302}
   - component: {fileID: 9192440848550412289}
+  - component: {fileID: 9192158550415140194}
   m_Layer: 5
   m_Name: OK Button
   m_TagString: Untagged
@@ -122,6 +123,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &9192158550415140194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9192440848550412291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c7738708bde4ae3869bb33da1b3d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioName: SelectButton2
 --- !u!1 &9192440848775001241
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,6 +1029,7 @@ GameObject:
   - component: {fileID: 9192440850271757190}
   - component: {fileID: 9192440850271757305}
   - component: {fileID: 9192440850271757304}
+  - component: {fileID: 7980489510858498793}
   m_Layer: 5
   m_Name: Back Button
   m_TagString: Untagged
@@ -1137,3 +1152,16 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7980489510858498793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9192440850271757306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c7738708bde4ae3869bb33da1b3d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioName: SelectButton
