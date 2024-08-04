@@ -42,6 +42,7 @@ public class ReferralManager : MonoBehaviour
         }
     }
 
+    [NaughtyAttributes.Button]
     private void OwnerClaimReward()
     {
         int reward = Referral.count * 2;
@@ -49,6 +50,7 @@ public class ReferralManager : MonoBehaviour
         Referral.count = 0;
 
         PromptManager.Prompt("Referral Claimed", $"You had claimed {reward} tickets!");
+        StartCoroutine(MongoUtils.UpdateData("Referral", Referral._id, Referral));
     }
 
     private void ClientClaimReward()
