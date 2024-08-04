@@ -1603,7 +1603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7da3859882acfc84fbff5066a43d6c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maximumSecond: 3
+  _maximumSecond: 90
   _currentSecond: 0
   _TBTimer: {fileID: 5453408590016045578}
   _hasEnded: 0
