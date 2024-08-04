@@ -31,8 +31,15 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        //Background Music
+        OnAction_MusicAudio("MainMenu", true);
     }
+
+    #region Simplified_ButtonUsage
+    public void OnSimpleAction_SFXAudio(string _name)
+    {
+        OnAction_SFXAudio(_name, true);
+    }
+    #endregion
 
     #region Play and Stop
     public void OnAction_MusicAudio (string _name, bool _toActivate)

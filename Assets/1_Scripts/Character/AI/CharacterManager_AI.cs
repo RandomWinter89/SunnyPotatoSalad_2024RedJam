@@ -57,6 +57,8 @@ public class CharacterManager_AI : MonoBehaviour
 
         animationMonitor.SetSpecialAnimationClip("Squashed");
 
+        FindObjectOfType<AudioManager>().OnSimpleAction_SFXAudio("HeavyBounce");
+
         // stop movement
         characterMovement.Stop();
 
