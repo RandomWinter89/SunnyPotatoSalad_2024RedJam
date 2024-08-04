@@ -131,4 +131,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amount: 1
   disappearDelay: 20
-  scoreItem: {fileID: 0}
+  scoreItem: {fileID: 6111041087159555818}
+--- !u!114 &6111041087159555818 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9132160780363405576, guid: 7805e2b4f1ad144cca619061c03635ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 3059409408475189218}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3944584450086216936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a87ea50339f4d59a7b828e4d855424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
