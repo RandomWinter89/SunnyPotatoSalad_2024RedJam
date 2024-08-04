@@ -29,9 +29,6 @@ public class PointsTallySystem : MonoBehaviour
         int airAsiaPoint = Mathf.RoundToInt(scoreSystem.Highscore * airAsiaPointMultiplier);
         StartCoroutine(AirAsiaPointAnimation(airAsiaPoint));
 
-        // update player data - highscore
-        // update player data - airAsiaPoints
-
         if (!GameManager.IsDevMode)
         {
             PlayerData playerData = DataManager.main.playerData;
@@ -85,7 +82,6 @@ public class PointsTallySystem : MonoBehaviour
     private void UpdatePlayFab()
     {
         PlayFabUtils.SetUserStatistic(PlayFabKeys.L_HIGHSCORE, scoreSystem.Highscore);
-        // update airasiapoint
-        //update collected ticket count
+        PlayFabUtils.Save<PlayerData>(PlayFabKeys.P_PLAYER_DATA, DataManager.main.playerData);
     }
 }

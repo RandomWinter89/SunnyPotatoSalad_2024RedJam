@@ -10,17 +10,17 @@ PrefabInstance:
     - target: {fileID: 2074134186564639115, guid: 7805e2b4f1ad144cca619061c03635ce,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 20
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2074134186564639115, guid: 7805e2b4f1ad144cca619061c03635ce,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 20
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2074134186564639115, guid: 7805e2b4f1ad144cca619061c03635ce,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 20
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2074134186642238217, guid: 7805e2b4f1ad144cca619061c03635ce,
         type: 3}
@@ -80,8 +80,14 @@ PrefabInstance:
     - target: {fileID: 2074134186642238218, guid: 7805e2b4f1ad144cca619061c03635ce,
         type: 3}
       propertyPath: m_Name
-      value: Ticket
+      value: Ticket Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8128987053625769596, guid: 7805e2b4f1ad144cca619061c03635ce,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0ea2120e7acff4247af8053a6c3f4088,
+        type: 3}
     - target: {fileID: 8128987053625769596, guid: 7805e2b4f1ad144cca619061c03635ce,
         type: 3}
       propertyPath: m_Color.b
@@ -125,3 +131,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amount: 1
   disappearDelay: 20
+  scoreItem: {fileID: 0}
