@@ -2071,7 +2071,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3145064c1dfa346f381fe420dd91cb9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreSystem: {fileID: 0}
+  scoreSystem: {fileID: 5453408589827737815}
   highscoreText: {fileID: 5453408589786779163}
   personalBestText: {fileID: 5453408590811796907}
   airAsiaPointText: {fileID: 5453408591524482722}
