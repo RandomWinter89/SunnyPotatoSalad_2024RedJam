@@ -71,6 +71,13 @@ public class CharacterManager_AI : MonoBehaviour
         StartCoroutine(DisableAfterDeathRoutine());
     }
 
+    public void Alive()
+    {
+        _isDead = false;
+        characterMovement.Resume();
+        collider.enabled = true;
+    }
+
     private IEnumerator DisableAfterDeathRoutine()
     {
         yield return new WaitForSeconds(3f);

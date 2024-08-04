@@ -53,6 +53,7 @@ public class PlayerMainUI : MonoBehaviour
             return;
         }
 
+        data.playerData.Currency.ticketCount--;
         SceneLoader.instance.Load(Scene.Gameplay);
     }
 

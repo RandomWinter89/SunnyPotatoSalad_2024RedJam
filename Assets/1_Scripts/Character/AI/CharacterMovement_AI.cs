@@ -98,4 +98,10 @@ public class CharacterMovement_AI : MonoBehaviour
         enabled = false;
 
     }
+
+    public void Resume()
+    {
+        agent.isStopped = false;
+        enabled = true;
+    }
 }
