@@ -72,6 +72,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3254444024405058009, guid: 7805e2b4f1ad144cca619061c03635ce,
+        type: 3}
+      propertyPath: isNegative
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3254444024405058009, guid: 7805e2b4f1ad144cca619061c03635ce,
+        type: 3}
+      propertyPath: growthAmount
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6300050507107599575, guid: 7805e2b4f1ad144cca619061c03635ce,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -103,8 +113,7 @@ PrefabInstance:
       propertyPath: isIncrement
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3254444024405058009, guid: 7805e2b4f1ad144cca619061c03635ce, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7805e2b4f1ad144cca619061c03635ce, type: 3}
 --- !u!1 &1964967301460895123 stripped
 GameObject:
@@ -168,18 +177,3 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7248972729722825807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1964967301460895123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea327cde7b2934052ae585effb8b268a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  growthDecreaseAmount: 0.1
-  dropsFood: 0
-  appliesKnockback: 0

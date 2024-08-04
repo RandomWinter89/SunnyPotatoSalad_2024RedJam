@@ -16,6 +16,16 @@ public class DataAPIPayload
     public object document;
 }
 
+[System.Serializable]
+public class UpdateAPIPayload
+{
+    public string collection;
+    public string database;
+    public string dataSource;
+    public object filter;
+    public object update;
+}
+
 public static class StringUtils
 {
     public static string Replace(this string input, Dictionary<string, string> replacements)
@@ -36,7 +46,8 @@ public static class StringUtils
 
 public static class MongoUtils
 {
-    private const string post_collection = "https://ap-southeast-1.aws.data.mongodb-api.com/app/data-jvhmszy/endpoint/data/v1/action/insertOne";
+    private const string post_insert_collection = "https://ap-southeast-1.aws.data.mongodb-api.com/app/data-jvhmszy/endpoint/data/v1/action/insertOne";
+    private const string post_update_collection = "https://ap-southeast-1.aws.data.mongodb-api.com/app/data-jvhmszy/endpoint/data/v1/action/updateOne";
     private const string get_collection = "https://ap-southeast-1.aws.data.mongodb-api.com/app/data-jvhmszy/endpoint/get_collection?id=[ID]&collName=[COLLECTION]";
 
     private const string referral = "https://ap-southeast-1.aws.data.mongodb-api.com/app/data-jvhmszy/endpoint/referral?code=";
@@ -84,7 +95,7 @@ public static class MongoUtils
         request.Dispose();
     }
 
-    public static IEnumerator PostData(string collectionName, object document)
+    public static IEnumerator InsertData(string collectionName, object document)
     {
         // Construct the payload
         DataAPIPayload payload = new DataAPIPayload
@@ -97,7 +108,7 @@ public static class MongoUtils
 
         string jsonData = JsonConvert.SerializeObject(payload);
 
-        UnityWebRequest request = new UnityWebRequest(post_collection, "POST");
+        UnityWebRequest request = new UnityWebRequest(post_insert_collection, "POST");
         byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();
@@ -118,7 +129,48 @@ public static class MongoUtils
         request.Dispose();
     }
 
-    public static IEnumerator PostReferral(string code, Action<MongoResult> callback)
+    public static IEnumerator UpdateData(string collectionName, string id, object document)
+    {
+        var filter = new
+        {
+            _id = id
+        };
+
+        UpdateAPIPayload payload = new UpdateAPIPayload
+        {
+            collection = collectionName,
+            database = "Database",
+            dataSource = "RedGameCluster",
+            filter = filter,
+            update = document
+        };
+
+        string jsonData = JsonConvert.SerializeObject(payload);
+
+        Debug.Log(jsonData);
+
+        UnityWebRequest request = new UnityWebRequest(post_update_collection, "POST");
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("api-key", apiKey);
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+        {
+            Debug.LogError("Error: " + request.error);
+        }
+        else
+        {
+            Debug.Log("Response: " + request.downloadHandler.text);
+        }
+
+        request.Dispose();
+    }
+
+    public static IEnumerator PostReferral(string code, Action<string> callback)
     {
         string url = $"{referral}{code}";
 
