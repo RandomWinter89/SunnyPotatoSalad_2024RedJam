@@ -7,11 +7,11 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private RectTransform hud;
 
-   // [SerializeField] private TimeSystem timeSystem;
-  //  [SerializeField] private ScoreSystem scoreSystem;
     [SerializeField] private PointsTallySystem pointsTallySystem;
 
     [SerializeField] private PauseMenu pauseMenu;
+
+    public static int CollectedTicketCount { get; private set; } = 0;
 
     public static bool IsDevMode = true;
 
@@ -57,5 +57,10 @@ public class GameManager : MonoBehaviour
         {
             hud.gameObject.SetActive(true);
         }
+    }
+
+    public static void AddCollectedTicket(int amount)
+    {
+        CollectedTicketCount += amount;
     }
 }
