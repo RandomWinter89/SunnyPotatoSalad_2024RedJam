@@ -17,6 +17,8 @@ public class PlayerMainUI : MonoBehaviour
 
     private void Awake()
     {
+        AudioManager.instance.OnAction_MusicAudio("MainMenu", true);
+
         startGameBtn.onClick.AddListener(StartGame);
         logoutBtn.onClick.AddListener(Logout);
 

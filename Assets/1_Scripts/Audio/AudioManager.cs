@@ -76,9 +76,9 @@ public class AudioManager : MonoBehaviour
         _sfxSource.volume = _sound.volume * _SFXVolume;
     
         if (_toActivate)
-            _musicSource.Play();
+            _sfxSource.Play();
         else
-            _musicSource.Stop();
+            _sfxSource.Stop();
     }
     #endregion
 

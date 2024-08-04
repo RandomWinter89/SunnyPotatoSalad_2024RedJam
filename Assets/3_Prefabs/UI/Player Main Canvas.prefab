@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 934540927925988208}
   - component: {fileID: 3064125333402628137}
   - component: {fileID: 5857102545700054729}
+  - component: {fileID: 2392275119490910444}
   m_Layer: 5
   m_Name: Logout Button
   m_TagString: Untagged
@@ -236,6 +237,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2392275119490910444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 891472419838018782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c7738708bde4ae3869bb33da1b3d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioName: SelectButton
 --- !u!1 &1312947918750809119
 GameObject:
   m_ObjectHideFlags: 0
@@ -1304,6 +1318,7 @@ GameObject:
   - component: {fileID: 2750343954724750499}
   - component: {fileID: 3505754083540716440}
   - component: {fileID: 4395413816871884980}
+  - component: {fileID: 1119085909126923926}
   m_Layer: 5
   m_Name: Start Game Button
   m_TagString: Untagged
@@ -1414,6 +1429,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1119085909126923926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5060350622734239273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c7738708bde4ae3869bb33da1b3d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioName: EnterGameplay
 --- !u!1 &5987021844607413650
 GameObject:
   m_ObjectHideFlags: 0
@@ -1426,6 +1454,7 @@ GameObject:
   - component: {fileID: 3587649016494977235}
   - component: {fileID: 7104873398524069516}
   - component: {fileID: 796948183643774332}
+  - component: {fileID: 8679970295301183504}
   m_Layer: 5
   m_Name: Referral Button
   m_TagString: Untagged
@@ -1535,7 +1564,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7104873398524069516}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &8679970295301183504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5987021844607413650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c7738708bde4ae3869bb33da1b3d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioName: SelectButton
 --- !u!1 &7535784486861985892
 GameObject:
   m_ObjectHideFlags: 0
@@ -2485,6 +2539,7 @@ GameObject:
   - component: {fileID: 5916189986924491396}
   - component: {fileID: 5013250807346076165}
   - component: {fileID: 4857876403122348386}
+  - component: {fileID: 7070780664657134354}
   m_Layer: 5
   m_Name: Leaderboard Button
   m_TagString: Untagged
@@ -2594,4 +2649,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5013250807346076165}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: LeaderboardManager, Assembly-CSharp
+        m_MethodName: LoadLeaderboard
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Highscore
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7070780664657134354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8529079280981153531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c7738708bde4ae3869bb33da1b3d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioName: SelectButton
