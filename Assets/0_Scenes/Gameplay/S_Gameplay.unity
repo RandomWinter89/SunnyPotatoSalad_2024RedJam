@@ -14063,6 +14063,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Map Border
       objectReference: {fileID: 0}
+    - target: {fileID: 779934779120948673, guid: a72aecf5b5c384c5186bcac47a9ba89c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 121.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 779934779120948687, guid: a72aecf5b5c384c5186bcac47a9ba89c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6875006480485330576, guid: a72aecf5b5c384c5186bcac47a9ba89c,
         type: 3}
       propertyPath: m_RootOrder
@@ -14116,6 +14126,21 @@ PrefabInstance:
     - target: {fileID: 6875006480485330576, guid: a72aecf5b5c384c5186bcac47a9ba89c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7435484956131919036, guid: a72aecf5b5c384c5186bcac47a9ba89c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8004019139592127446, guid: a72aecf5b5c384c5186bcac47a9ba89c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8889291888162473056, guid: a72aecf5b5c384c5186bcac47a9ba89c,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -31281,7 +31306,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: 90da55f0529dc4d10a66e9dc1690994f,
+      objectReference: {fileID: 23800000, guid: c0fbc09ee41073447a46fa997c80c1c1,
         type: 2}
     - target: {fileID: 7906909765126891671, guid: b758ffe2cb177446e95f4fd314410bd0,
         type: 3}
