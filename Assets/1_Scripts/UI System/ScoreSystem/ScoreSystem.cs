@@ -12,6 +12,7 @@ public class ScoreSystem : MonoBehaviour
     [SerializeField] private TMP_Text _currentScorePoint;
     [SerializeField] private TMP_Text _personalScorePoint;
 
+
     public static ScoreSystem Instance;
 
     public int PersonalBestScore => _personalScore;
@@ -32,26 +33,30 @@ public class ScoreSystem : MonoBehaviour
         }
         else
         {
-            PlayFabUtils.GetUserStatistic(PlayFabKeys.L_HIGHSCORE, (highscore) =>
-            {
-                _personalScore = highscore;
-            });
+            _personalScore = DataManager.main.playerData.Highscore;
         }
-
-
-        //Extract highscore to personal score;
     }
     
     public void IncrementScore(int _value)
     {
         _currentScore += (_value * _multiplier);
+        _currentScore = Mathf.Clamp(_currentScore, 0, int.MaxValue);
         UpdateScorePoint();
+
+        Vector3 offset = new Vector3(0, -80, 0);
+
+        PopupNumber.Create(PopupType.AddScore, _currentScorePoint.transform.position + offset , _value, _currentScorePoint.transform);
     }
 
     public void DecrementScore(int _value)
     {
         _currentScore -= _value;
+        _currentScore = Mathf.Clamp(_currentScore, 0, int.MaxValue);
         UpdateScorePoint();
+
+        Vector3 offset = new Vector3(0, -80, 0);
+
+        PopupNumber.Create(PopupType.MinusScore, _currentScorePoint.transform.position + offset, _value, _currentScorePoint.transform);
     }
 
     private void UpdateScorePoint()
