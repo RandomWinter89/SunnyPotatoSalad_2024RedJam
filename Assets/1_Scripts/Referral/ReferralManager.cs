@@ -92,7 +92,7 @@ public class ReferralManager : MonoBehaviour
                 }
                 else
                 {
-                    PromptManager.Prompt("Failed Apply Code", $"Failed to apply code due to \n\n{result.message}, \n\nplease report to developer.");
+                    PromptManager.Prompt("Failed Apply Code", $"<color=red>Failed to apply code due to \n\n{result.message}, \n\nplease report to developer.</color>");
                 }
             }));
     }

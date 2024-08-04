@@ -50,7 +50,7 @@ public class DailyCheckIn
 [Serializable]
 public class Currency
 {
-    public int ticketCount;
+    public int ticketCount = 3;
     public int airAsiaPoint;
 }
 

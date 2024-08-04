@@ -590,6 +590,7 @@ GameObject:
   - component: {fileID: 4501666208362999609}
   - component: {fileID: 4501666208362999608}
   - component: {fileID: 4501666208362999611}
+  - component: {fileID: 1937687949990680625}
   m_Layer: 5
   m_Name: Claim Button
   m_TagString: Untagged
@@ -700,6 +701,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1937687949990680625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4501666208362999605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c7738708bde4ae3869bb33da1b3d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioName: SelectButton2
 --- !u!1 &4501666208689058792
 GameObject:
   m_ObjectHideFlags: 0

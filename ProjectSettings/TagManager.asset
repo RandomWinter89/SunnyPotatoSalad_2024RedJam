@@ -42,6 +42,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Characters and Obstacles
+  - name: Shadows
     uniqueID: 3923220071
+    locked: 0
+  - name: Character, Obstacle & Food
+    uniqueID: 531996389
     locked: 0

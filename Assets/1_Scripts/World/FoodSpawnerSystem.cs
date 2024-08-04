@@ -119,6 +119,8 @@ public class FoodSpawnerSystem : MonoBehaviour
             targetFoodItem = GetRandomFoodItemFromList(positiveFoodPrefabs);
         }
 
+        if (occupiedPointsDict.ContainsKey(targetFoodItem)) return;
+
         CharacterGrowthItem spawned = poolDict[targetFoodItem].GetAvailable();
         spawned.gameObject.SetActive(true);
 

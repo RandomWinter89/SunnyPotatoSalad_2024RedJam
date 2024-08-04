@@ -459,6 +459,7 @@ GameObject:
   - component: {fileID: 564568051008339569}
   - component: {fileID: 564568051008339582}
   - component: {fileID: 564568051008339583}
+  - component: {fileID: 5605931581823576951}
   m_Layer: 5
   m_Name: Login Button
   m_TagString: Untagged
@@ -569,6 +570,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5605931581823576951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564568051008339581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c7738708bde4ae3869bb33da1b3d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioName: SelectButton
 --- !u!1 &564568051213242423
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,7 +697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff0e43ad4dc4848fe872bbbaadff647f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAutoLogin: 1
+  isAutoLogin: 0
   emailInput: {fileID: 564568052167656305}
   passwordInput: {fileID: 564568052193651300}
   loginButton: {fileID: 564568051008339583}
@@ -1099,6 +1113,7 @@ GameObject:
   - component: {fileID: 564568052167656307}
   - component: {fileID: 564568052167656304}
   - component: {fileID: 564568052167656305}
+  - component: {fileID: 12144696155184696}
   m_Layer: 5
   m_Name: Email InputField (TMP)
   m_TagString: Untagged
@@ -1232,7 +1247,19 @@ MonoBehaviour:
       m_Calls: []
   m_OnSelect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 12144696155184696}
+        m_TargetAssemblyTypeName: Audio_ButtonSFX, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnDeselect:
     m_PersistentCalls:
       m_Calls: []
@@ -1263,6 +1290,19 @@ MonoBehaviour:
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
+--- !u!114 &12144696155184696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564568052167656319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c7738708bde4ae3869bb33da1b3d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioName: ShortClick
 --- !u!1 &564568052178220064
 GameObject:
   m_ObjectHideFlags: 0
@@ -1410,6 +1450,7 @@ GameObject:
   - component: {fileID: 564568052193651302}
   - component: {fileID: 564568052193651303}
   - component: {fileID: 564568052193651300}
+  - component: {fileID: 406624168591351796}
   m_Layer: 5
   m_Name: Password InputField (TMP)
   m_TagString: Untagged
@@ -1543,7 +1584,19 @@ MonoBehaviour:
       m_Calls: []
   m_OnSelect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 406624168591351796}
+        m_TargetAssemblyTypeName: Audio_ButtonSFX, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnDeselect:
     m_PersistentCalls:
       m_Calls: []
@@ -1574,6 +1627,19 @@ MonoBehaviour:
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
+--- !u!114 &406624168591351796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564568052193651298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c7738708bde4ae3869bb33da1b3d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioName: ShortClick
 --- !u!1 &564568052244272786
 GameObject:
   m_ObjectHideFlags: 0
@@ -1756,7 +1822,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -46.9, y: -50.6}
-  m_SizeDelta: {x: 112.29831, y: 146.56458}
+  m_SizeDelta: {x: 169.16, y: 146.56458}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3919574194288905198
 CanvasRenderer:
