@@ -46,12 +46,6 @@ public class PlayerMainUI : MonoBehaviour
         SceneLoader.instance.Load(Scene.Gameplay);
     }
 
-    public void Logout()
-    {
-        LoginManager.ClearLoginDetails();
-        SceneLoader.instance.Load(Scene.Login);
-    }
-
     private void StartGame()
     {
         var data = DataManager.main;
