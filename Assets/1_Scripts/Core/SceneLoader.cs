@@ -47,11 +47,11 @@ public class SceneLoader : MonoBehaviour
 
     public void Load(Scene scene, IEnumerator routine = null)
     {
+        Loading.Load();
         StartCoroutine(Delay());
 
         IEnumerator Delay()
         {
-            Loading.Load();
             Time.timeScale = 1;
             OnLoadStart?.Invoke();
 

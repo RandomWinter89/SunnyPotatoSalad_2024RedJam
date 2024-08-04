@@ -26,33 +26,24 @@ public static class StringUtils
         }
         return input;
     }
+
+    public static List<string> GetEnumNames<T>() where T : Enum
+    {
+        // Get the names of the enum values and convert them to a list of strings
+        return new List<string>(Enum.GetNames(typeof(T)));
+    }
 }
 
-public class MongoUtils : MonoBehaviour
+public static class MongoUtils
 {
-    private string post_collection = "https://ap-southeast-1.aws.data.mongodb-api.com/app/data-jvhmszy/endpoint/data/v1/action/insertOne";
-    private string get_collection = "https://ap-southeast-1.aws.data.mongodb-api.com/app/data-jvhmszy/endpoint/get_collection?id=[ID]&collName=[COLLECTION]";
-    private string apiKey = "stqOkVG6TSOCwS0ARQ2lpnQhSWqZbBfQAwpcqaL2FYCh6urL7UdFrGY9LsV9uHQn";
+    private const string post_collection = "https://ap-southeast-1.aws.data.mongodb-api.com/app/data-jvhmszy/endpoint/data/v1/action/insertOne";
+    private const string get_collection = "https://ap-southeast-1.aws.data.mongodb-api.com/app/data-jvhmszy/endpoint/get_collection?id=[ID]&collName=[COLLECTION]";
 
-    [Button]
-    void post_test()
-    {
-        var user = new
-        {
-            _id = "jksadhb",
-            age = 28
-        };
+    private const string referral = "https://ap-southeast-1.aws.data.mongodb-api.com/app/data-jvhmszy/endpoint/referral?code=";
 
-        StartCoroutine(PostData("Referral", user));
-    }
+    private const string apiKey = "stqOkVG6TSOCwS0ARQ2lpnQhSWqZbBfQAwpcqaL2FYCh6urL7UdFrGY9LsV9uHQn";
 
-    [Button]
-    void get_test()
-    {
-        StartCoroutine(GetData<ReferralCode>("Referral", "jksadhb", data => { Debug.Log(data.count); }));
-    }
-
-    IEnumerator GetData<T>(string collectionName, string primaryKey, Action<T> resultData = null)
+    public static IEnumerator GetData<T>(string collectionName, string primaryKey, Action<T> resultData = null) where T : new()
     {
         var replaceDict = new Dictionary<string, string>()
         {
@@ -72,18 +63,28 @@ public class MongoUtils : MonoBehaviour
         if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
         {
             Debug.LogError("Error: " + request.error);
+            resultData?.Invoke((T)default);
         }
         else
         {
-            Debug.Log("Response: " + request.downloadHandler.text);
-            object data = JsonConvert.DeserializeObject<T>(request.downloadHandler.text);
-            resultData?.Invoke((T)data);
+            string response = request.downloadHandler.text;
+            Debug.Log("Response: " + response);
+
+            if (string.IsNullOrEmpty(response))
+            {
+                resultData?.Invoke((T)default);
+            }
+            else
+            {
+                object data = JsonConvert.DeserializeObject<T>(request.downloadHandler.text);
+                resultData?.Invoke((T)data);
+            }
         }
 
         request.Dispose();
     }
 
-    IEnumerator PostData(string collectionName, object document)
+    public static IEnumerator PostData(string collectionName, object document)
     {
         // Construct the payload
         DataAPIPayload payload = new DataAPIPayload
@@ -112,6 +113,31 @@ public class MongoUtils : MonoBehaviour
         else
         {
             Debug.Log("Response: " + request.downloadHandler.text);
+        }
+
+        request.Dispose();
+    }
+
+    public static IEnumerator PostReferral(string code, Action<string> callback)
+    {
+        string url = $"{referral}{code}";
+
+        UnityWebRequest request = new UnityWebRequest(url, "POST");
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+        request.SetRequestHeader("api-key", apiKey);
+
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+        {
+            Debug.LogError("Error: " + request.error);
+            callback?.Invoke(request.error);
+        }
+        else
+        {
+            Debug.Log("Uploaded Referral");
+            callback?.Invoke("success");
         }
 
         request.Dispose();

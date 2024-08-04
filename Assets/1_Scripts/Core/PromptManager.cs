@@ -12,6 +12,7 @@ public struct PromptData
     public string description;
     public string confirmText;
     public Action action;
+    public bool disableBackButton;
     public bool enablePanel; // on action invoked, set panel gameobject status
 }
 
@@ -22,6 +23,7 @@ public class PromptManager : MonoBehaviour
     [SerializeField] TMP_Text descText;
     [SerializeField] TMP_Text confirmBtnText;
     [SerializeField] Button confirmBtn;
+    [SerializeField] Button cancelBtn;
 
     private static event Action<PromptData> OnPromptEvent;
 
@@ -51,6 +53,7 @@ public class PromptManager : MonoBehaviour
         descText.SetText(data.description);
         confirmBtnText.SetText(data.confirmText);
         confirmBtn.gameObject.SetActive(data.action != null);
+        cancelBtn.gameObject.SetActive(!data.disableBackButton);
         confirmBtn.onClick.RemoveAllListeners();
 
         if (data.action != null)

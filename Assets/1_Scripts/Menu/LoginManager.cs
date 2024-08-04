@@ -18,10 +18,11 @@ public class LoginManager : MonoBehaviour
 
     public static Action OnLogin;
 
-    private void Awake()
+    private void Start()
     {
         if (isAutoLogin && PlayerPrefs.HasKey(EMAIL) && PlayerPrefs.HasKey(PASSWORD))
         {
+            Loading.Load();
             string prefs_email = PlayerPrefs.GetString(EMAIL);
             string prefs_password = PlayerPrefs.GetString(PASSWORD);
 
@@ -29,6 +30,10 @@ public class LoginManager : MonoBehaviour
             passwordInput.SetTextWithoutNotify(prefs_password);
 
             Login(prefs_email, prefs_password);
+        }
+        else
+        {
+            Loading.Stop();
         }
 
         loginButton.onClick.AddListener(() => Login(emailInput.text, passwordInput.text));

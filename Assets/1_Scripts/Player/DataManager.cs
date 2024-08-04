@@ -9,6 +9,7 @@ public class DataManager : MonoBehaviour
     public string playFabID;
     public PlayerData playerData = new();
     public DailyCheckIn dailyReward = new();
+    public ReferralCode referral = new();
 
     public static DataManager main;
 
@@ -46,14 +47,23 @@ public class DataManager : MonoBehaviour
 
             this.dailyReward = data;
         }, null, false);
-    }
 
-    [SerializeField]
-    ReferralCode referral;
+        yield return MongoUtils.GetData<ReferralCode>("Referral", playFabID,
+        data =>
+        {
+            if (data == null || string.IsNullOrEmpty(data.code))
+            {
+                data = new ReferralCode()
+                {
+                    _id = playFabID,
+                    code = PromoCodeGenerator.GeneratePromoCode(playFabID),
+                    count = 0
+                };
 
-    [NaughtyAttributes.Button]
-    private void Test_Push_Leaderboard_Statistic()
-    {
-        
+                StartCoroutine(MongoUtils.PostData("Referral", data));
+            }
+
+            referral = data;
+        });
     }
 }

@@ -36,9 +36,9 @@ public class PlayerMainUI : MonoBehaviour
     private void RepaintUI()
     {
         var data = DataManager.main;
-        highscoreText.SetText($"Highscore\n{data.playerData.Highscore}");
+        highscoreText.SetText($"{data.playerData.Highscore}");
         airAsiaPointsText.SetText(data.playerData.Currency.airAsiaPoint.ToString());
-        ticketText.SetText($"Ticket\n{data.playerData.Currency.ticketCount}");
+        ticketText.SetText($"{data.playerData.Currency.ticketCount}");
     }
 
     private void StartGame()
