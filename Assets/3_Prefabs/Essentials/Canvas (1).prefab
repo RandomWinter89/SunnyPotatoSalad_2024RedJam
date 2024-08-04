@@ -802,6 +802,7 @@ GameObject:
   - component: {fileID: 5453408590000178688}
   - component: {fileID: 5453408590000178691}
   - component: {fileID: 972226517738380222}
+  - component: {fileID: 1900586833857037064}
   m_Layer: 5
   m_Name: Button - Exit
   m_TagString: Untagged
@@ -937,6 +938,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadScene: 1
+--- !u!114 &1900586833857037064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5453408590000178690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c7738708bde4ae3869bb33da1b3d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioName: SelectButton
 --- !u!1 &5453408590016045588
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,6 +1099,7 @@ GameObject:
   - component: {fileID: 5453408590050441784}
   - component: {fileID: 5453408590050441787}
   - component: {fileID: 5453408590050441785}
+  - component: {fileID: 8402770489521265329}
   m_Layer: 5
   m_Name: Button - Resume
   m_TagString: Untagged
@@ -1195,6 +1210,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8402770489521265329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5453408590050441797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c7738708bde4ae3869bb33da1b3d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioName: SelectButton
 --- !u!1 &5453408590203949574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1619,6 +1647,7 @@ GameObject:
   - component: {fileID: 5453408590667382078}
   - component: {fileID: 5453408590667382073}
   - component: {fileID: 5453408590667382072}
+  - component: {fileID: 4883928829264786922}
   m_Layer: 5
   m_Name: Button - Exit
   m_TagString: Untagged
@@ -1741,6 +1770,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4883928829264786922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5453408590667382074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c7738708bde4ae3869bb33da1b3d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioName: SelectButton
 --- !u!1 &5453408590670747431
 GameObject:
   m_ObjectHideFlags: 0
@@ -1753,6 +1795,7 @@ GameObject:
   - component: {fileID: 5453408590670747418}
   - component: {fileID: 5453408590670747429}
   - component: {fileID: 5453408590670747428}
+  - component: {fileID: 8419845380794895115}
   m_Layer: 5
   m_Name: Button - Pause
   m_TagString: Untagged
@@ -1862,6 +1905,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8419845380794895115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5453408590670747431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c7738708bde4ae3869bb33da1b3d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioName: SelectButton
 --- !u!1 &5453408590678283186
 GameObject:
   m_ObjectHideFlags: 0
@@ -2635,6 +2691,7 @@ GameObject:
   - component: {fileID: 5453408591399236152}
   - component: {fileID: 5453408591399236155}
   - component: {fileID: 5453408591399236154}
+  - component: {fileID: 629320366158489721}
   m_Layer: 5
   m_Name: Button - Restart
   m_TagString: Untagged
@@ -2757,6 +2814,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &629320366158489721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5453408591399236164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c7738708bde4ae3869bb33da1b3d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioName: SelectButton
 --- !u!1 &5453408591415343418
 GameObject:
   m_ObjectHideFlags: 0
