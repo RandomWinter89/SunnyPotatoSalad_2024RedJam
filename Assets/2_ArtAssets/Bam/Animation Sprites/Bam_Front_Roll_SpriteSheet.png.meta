@@ -132,12 +132,12 @@ TextureImporter:
       name: Bam_Front_Roll_SpriteSheet_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 1055
-        width: 489
-        height: 435
+        x: 0
+        y: 1024
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -153,12 +153,12 @@ TextureImporter:
       name: Bam_Front_Roll_SpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 520
-        y: 1070
-        width: 492
-        height: 420
+        x: 512
+        y: 1024
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -174,12 +174,12 @@ TextureImporter:
       name: Bam_Front_Roll_SpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 22
-        y: 558
-        width: 444
-        height: 455
+        x: 0
+        y: 512
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -195,12 +195,12 @@ TextureImporter:
       name: Bam_Front_Roll_SpriteSheet_3
       rect:
         serializedVersion: 2
-        x: 524
-        y: 558
-        width: 483
-        height: 436
+        x: 512
+        y: 512
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -216,12 +216,12 @@ TextureImporter:
       name: Bam_Front_Roll_SpriteSheet_4
       rect:
         serializedVersion: 2
-        x: 43
-        y: 46
-        width: 426
-        height: 420
+        x: 0
+        y: 0
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -237,12 +237,12 @@ TextureImporter:
       name: Bam_Front_Roll_SpriteSheet_5
       rect:
         serializedVersion: 2
-        x: 558
-        y: 30
-        width: 420
-        height: 438
+        x: 512
+        y: 0
+        width: 512
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -271,7 +271,6 @@ TextureImporter:
       Bam_Front_Roll_SpriteSheet_3: -1837632921
       Bam_Front_Roll_SpriteSheet_4: 1162145911
       Bam_Front_Roll_SpriteSheet_5: 1224156561
-      Bam_Front_Roll_SpriteSheet_6: 1840479883
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

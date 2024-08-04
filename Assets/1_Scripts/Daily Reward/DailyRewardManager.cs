@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using AYellowpaper.SerializedCollections;
 using TMPro;
+using static PlayFabKeys;
 
 public class DailyRewardManager : MonoBehaviour
 {
@@ -100,6 +101,8 @@ public class DailyRewardManager : MonoBehaviour
         pointCountText.SetText($"x{airAsiaPointsReward}");
 
         data.dailyReward.SetNextClaimTime(GetNextClaimTime());
+
+        PlayFabUtils.Save<DailyCheckIn>(P_DAILY_CHECK_IN, data.dailyReward);
     }
 
     private void ClaimReward()

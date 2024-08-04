@@ -9,6 +9,7 @@ public class DataManager : MonoBehaviour
     public string playFabID;
     public PlayerData playerData = new();
     public DailyCheckIn dailyReward = new();
+    public ReferralCode referral = new();
 
     public static DataManager main;
 
@@ -25,6 +26,22 @@ public class DataManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void OnEnable()
+    {
+        PlayerData.OnPlayerInfoUpdated += UpdatePlayerData;
+    }
+
+    private void OnDisable()
+    {
+        PlayerData.OnPlayerInfoUpdated -= UpdatePlayerData;
+    }
+
+    private void UpdatePlayerData()
+    {
+        //DataQueue.Queue(PlayFabUtils.Save<PlayerData>(P_PLAYER_DATA, playerData));
+        PlayFabUtils.Save<PlayerData>(P_PLAYER_DATA, playerData);
     }
 
     public IEnumerator LoadPlayerDataRoutine()
@@ -46,14 +63,51 @@ public class DataManager : MonoBehaviour
 
             this.dailyReward = data;
         }, null, false);
+
+        yield return MongoUtils.GetData<ReferralCode>("Referral", playFabID,
+        data =>
+        {
+            if (data == null || string.IsNullOrEmpty(data.code))
+            {
+                data = new ReferralCode()
+                {
+                    _id = playFabID,
+                    code = PromoCodeGenerator.GeneratePromoCode(playFabID),
+                    count = 0
+                };
+
+                StartCoroutine(MongoUtils.InsertData("Referral", data));
+            }
+
+            referral = data;
+        });
     }
 
-    [SerializeField]
-    ReferralCode referral;
 
     [NaughtyAttributes.Button]
-    private void Test_Push_Leaderboard_Statistic()
+    private void test_insert()
     {
-        
+        var data = new ReferralCode()
+        {
+            _id = DataManager.main.playFabID,
+            code = PromoCodeGenerator.GeneratePromoCode(DataManager.main.playFabID),
+            count = 0
+        };
+
+        StartCoroutine(MongoUtils.InsertData("Referral", data));
     }
+
+    [NaughtyAttributes.Button]
+    private void test_update()
+    {
+        var data = new ReferralCode()
+        {
+            _id = DataManager.main.playFabID,
+            code = PromoCodeGenerator.GeneratePromoCode(DataManager.main.playFabID),
+            count = 0
+        };
+
+        StartCoroutine(MongoUtils.UpdateData("Referral", data._id, data));
+    }
+
 }

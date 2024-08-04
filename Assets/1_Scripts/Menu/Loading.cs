@@ -18,12 +18,14 @@ public class Loading : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+
+        OnStart += StartLoading;
+        OnStop += StopLoading;
     }
 
     public void OnEnable()
     {
-        OnStart += StartLoading;
-        OnStop += StopLoading;
+
     }
 
     private void OnDisable()
@@ -51,8 +53,8 @@ public class Loading : MonoBehaviour
         while (true)
         {
             float timer = 0f;
-            float totalTime = 1f;
-            float initialSpeed = 2500;
+            float totalTime = .5f;
+            float initialSpeed = 1000;
 
             while (timer < totalTime)
             {

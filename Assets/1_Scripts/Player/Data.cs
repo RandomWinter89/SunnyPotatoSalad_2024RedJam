@@ -57,6 +57,7 @@ public class Currency
 [Serializable]
 public class ReferralCode
 {
-    public string _id;
+    public string _id; // playfabID
+    public string code;
     public int count;
 }

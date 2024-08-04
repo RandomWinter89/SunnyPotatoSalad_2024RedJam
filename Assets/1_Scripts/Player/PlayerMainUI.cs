@@ -40,12 +40,7 @@ public class PlayerMainUI : MonoBehaviour
         airAsiaPointsText.SetText(data.playerData.Currency.airAsiaPoint.ToString());
         ticketText.SetText($"{data.playerData.Currency.ticketCount}");
     }
-
-    public void LoadGameScene()
-    {
-        SceneLoader.instance.Load(Scene.Gameplay);
-    }
-
+    
     private void StartGame()
     {
         var data = DataManager.main;
