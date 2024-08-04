@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
 
         PauseMenu.OnPausedStateChanged += OnPauseStateChanged;
 
-    
+        AudioManager.instance.OnAction_MusicAudio("InGame", true);
     }
 
     public void OnGameEnded()
