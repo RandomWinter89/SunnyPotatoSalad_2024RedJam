@@ -6,6 +6,10 @@ public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] CharacterGrowthDataSO _characterGrowth;
 
+
+    // VFX
+    [SerializeField] private GameObject vfx_stun;
+
 #region <<<Variable>>>
     [SerializeField] Joystick _joystick;
 
@@ -54,6 +58,8 @@ public class CharacterMovement : MonoBehaviour
             return;
         }
 
+        if (vfx_stun.gameObject.activeInHierarchy)
+            vfx_stun.gameObject.SetActive(false);
         HandleRun();
     }
 
@@ -96,6 +102,9 @@ public class CharacterMovement : MonoBehaviour
     private void SetStunDuration(float duration)
     {
         _stunDuration = duration;
+
+        if(!vfx_stun.gameObject.activeInHierarchy)
+            vfx_stun.gameObject.SetActive(true);
     }
 
     [NaughtyAttributes.Button]
@@ -104,6 +113,7 @@ public class CharacterMovement : MonoBehaviour
         Vector3 dir = -_prevForce.normalized;
         Vector3 force = dir * _knockbackForce;
         _rigidbody.AddForce( force, ForceMode.Impulse);
+
         SetStunDuration(stunDuration);
     }
 }
