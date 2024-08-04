@@ -28,6 +28,22 @@ public class DataManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void OnEnable()
+    {
+        PlayerData.OnPlayerInfoUpdated += UpdatePlayerData;
+    }
+
+    private void OnDisable()
+    {
+        PlayerData.OnPlayerInfoUpdated -= UpdatePlayerData;
+    }
+
+    private void UpdatePlayerData()
+    {
+        //DataQueue.Queue(PlayFabUtils.Save<PlayerData>(P_PLAYER_DATA, playerData));
+        PlayFabUtils.Save<PlayerData>(P_PLAYER_DATA, playerData);
+    }
+
     public IEnumerator LoadPlayerDataRoutine()
     {
         yield return PlayFabUtils.LoadData<PlayerData>(P_PLAYER_DATA,

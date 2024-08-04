@@ -118,7 +118,7 @@ public static class MongoUtils
         request.Dispose();
     }
 
-    public static IEnumerator PostReferral(string code, Action<string> callback)
+    public static IEnumerator PostReferral(string code, Action<MongoResult> callback)
     {
         string url = $"{referral}{code}";
 
@@ -132,12 +132,19 @@ public static class MongoUtils
         if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
         {
             Debug.LogError("Error: " + request.error);
-            callback?.Invoke(request.error);
+            callback?.Invoke(new MongoResult()
+            {
+                success = false,
+                error = request.error,
+                message = "Error Occurred"
+            });
         }
         else
         {
+            var result = JsonConvert.DeserializeObject<MongoResult>(request.downloadHandler.text);
+
             Debug.Log("Uploaded Referral");
-            callback?.Invoke("success");
+            callback?.Invoke(result);
         }
 
         request.Dispose();

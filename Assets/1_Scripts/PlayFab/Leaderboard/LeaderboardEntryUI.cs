@@ -22,7 +22,7 @@ public class LeaderboardEntryUI : MonoBehaviour
 
         positionImg.color = GetPositionColor(position);
         positionText.SetText(position.ToString());
-        profileNameText.SetText(!string.IsNullOrEmpty(entry.DisplayName) ? entry.DisplayName : "User");
+        profileNameText.SetText(!string.IsNullOrEmpty(entry.DisplayName) ? entry.DisplayName : $"User - {entry.PlayFabId}");
         valueText.SetText(entry.StatValue.ToString());
 
         var rect = transform as RectTransform;
