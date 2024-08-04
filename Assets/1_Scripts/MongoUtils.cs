@@ -170,7 +170,7 @@ public static class MongoUtils
         request.Dispose();
     }
 
-    public static IEnumerator PostReferral(string code, Action<string> callback)
+    public static IEnumerator PostReferral(string code, Action<MongoResult> callback)
     {
         string url = $"{referral}{code}";
 
