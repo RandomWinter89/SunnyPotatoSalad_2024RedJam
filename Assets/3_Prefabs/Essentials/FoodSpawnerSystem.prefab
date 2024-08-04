@@ -541,3 +541,4 @@ MonoBehaviour:
   - {fileID: 3073182058744786752, guid: 7fdec92715ffa4a02bc54251c4253657, type: 3}
   player: {fileID: 0}
   spawnPointsContainer: {fileID: 4085329186779827220}
+  ticket: {fileID: 4175417036137234015, guid: f21ec89ef119f4ed98ca06c75f1de87e, type: 3}

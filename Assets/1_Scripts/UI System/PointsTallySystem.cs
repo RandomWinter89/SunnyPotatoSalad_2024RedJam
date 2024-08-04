@@ -32,8 +32,16 @@ public class PointsTallySystem : MonoBehaviour
         // update player data - highscore
         // update player data - airAsiaPoints
 
-        if(!GameManager.IsDevMode)
-            PlayFabUtils.SetUserStatistic(PlayFabKeys.L_HIGHSCORE, scoreSystem.Highscore);
+        if (!GameManager.IsDevMode)
+        {
+            PlayerData playerData = DataManager.main.playerData;
+
+            playerData.SetHighscore(scoreSystem.Highscore);
+            playerData.AddAirAsiaPoint(airAsiaPoint);
+            playerData.AddTicket(GameManager.CollectedTicketCount);
+
+            UpdatePlayFab();
+        }
     }
 
 
@@ -72,5 +80,12 @@ public class PointsTallySystem : MonoBehaviour
 
         SetAirAsiaPointText(totalAirAsiaPoint);
         onComplete?.Invoke();
+    }
+
+    private void UpdatePlayFab()
+    {
+        PlayFabUtils.SetUserStatistic(PlayFabKeys.L_HIGHSCORE, scoreSystem.Highscore);
+        // update airasiapoint
+        //update collected ticket count
     }
 }

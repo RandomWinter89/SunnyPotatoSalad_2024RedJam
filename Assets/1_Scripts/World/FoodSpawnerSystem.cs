@@ -11,19 +11,26 @@ public class FoodSpawnerSystem : MonoBehaviour
     [SerializeField] private Transform spawnPointsContainer;
     private List<Transform> spawnPoints = new();
 
-    private const int MAX_ACTIVE_FOOD_COUNT = 3;
-    private const float NEGATIVE_FOOD_PROBABILITY = .3f;
+    [Header("Ticket")]
+    [SerializeField] private TicketItem ticket;
+
+    private const int MAX_ACTIVE_FOOD_COUNT = 5;
+    private const float PROBABILITY_NEGATIVE_FOOD = .3f;
+    private const float PROBABILITY_TICKET = .1f;
 
     private const float SPAWN_INTERVAL = 5f;
     private float _nextSpawnTime = 0f;
 
-    private Dictionary<CharacterGrowthItem, Pool> poolDict = new();
+    private Pool<TicketItem> ticketPool = new();
+    private Dictionary<CharacterGrowthItem, Pool<CharacterGrowthItem>> poolDict = new();
 
     private static Dictionary<CharacterGrowthItem, Transform> occupiedPointsDict = new();
 
-    private Pool CreatePool(CharacterGrowthItem food)
+    #region Pool
+
+    private Pool<CharacterGrowthItem> CreatePool(CharacterGrowthItem food)
     {
-        Pool pool = new Pool();
+        Pool<CharacterGrowthItem> pool = new Pool<CharacterGrowthItem>();
 
         for(int i = 0; i < pool.size; i++)
         {
@@ -35,6 +42,20 @@ public class FoodSpawnerSystem : MonoBehaviour
         return pool;
     }
 
+    private Pool<TicketItem> CreatePool(TicketItem ticket)
+    {
+        Pool<TicketItem> pool = new Pool<TicketItem>();
+
+        for (int i = 0; i < pool.size; i++)
+        {
+            TicketItem created = Instantiate(ticket, container);
+            created.gameObject.SetActive(false);
+            pool.items.Add(created);
+        }
+
+        return pool;
+    }
+    #endregion
 
     private void Awake()
     {
@@ -59,6 +80,8 @@ public class FoodSpawnerSystem : MonoBehaviour
         {
             poolDict.Add(food, CreatePool(food));
         }
+
+        ticketPool = CreatePool(ticket);
     }
 
     private void FixedUpdate()
@@ -71,14 +94,19 @@ public class FoodSpawnerSystem : MonoBehaviour
             return;
         }
 
-        SpawnFood();
+        bool spawnTicket = Random.value < PROBABILITY_TICKET;
+        if (spawnTicket)
+            SpawnTicket();
+        else
+            SpawnFood();
+
         _nextSpawnTime = SPAWN_INTERVAL;
     }
 
     private void SpawnFood()
     {
         // Determine if we should spawn a negative food item
-        bool spawnNegativeFood = Random.value < NEGATIVE_FOOD_PROBABILITY;
+        bool spawnNegativeFood = Random.value < PROBABILITY_NEGATIVE_FOOD;
 
         CharacterGrowthItem targetFoodItem;
         if (spawnNegativeFood)
@@ -98,8 +126,16 @@ public class FoodSpawnerSystem : MonoBehaviour
         spawned.transform.position = spawnPoint.position;
 
         occupiedPointsDict.Add(spawned, spawnPoint);
+    }
 
+    private void SpawnTicket()
+    {
+        TicketItem ticketItem = ticketPool.GetAvailable();
 
+        Transform spawnPoint = GetRandomPointFromList(spawnPoints);
+        ticketItem.transform.position = spawnPoint.position;
+
+        ticketItem.gameObject.SetActive(true);
     }
 
 
@@ -135,12 +171,13 @@ public class FoodSpawnerSystem : MonoBehaviour
     }
 }
 
-public class Pool
+
+public class Pool<T> where T : MonoBehaviour
 {
-    public List<CharacterGrowthItem> items =new();
+    public List<T> items = new();
     public int size = 10;
 
-    public CharacterGrowthItem GetAvailable()
+    public T GetAvailable()
     {
         return items.Find((item) => !item.gameObject.activeInHierarchy);
     }
