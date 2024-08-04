@@ -104,7 +104,10 @@ public class CharacterMovement : MonoBehaviour
         _stunDuration = duration;
 
         if(!vfx_stun.gameObject.activeInHierarchy)
+        {
             vfx_stun.gameObject.SetActive(true);
+            AudioManager.instance.OnSimpleAction_SFXAudio("Stun");
+        }
     }
 
     [NaughtyAttributes.Button]

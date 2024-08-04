@@ -48,6 +48,8 @@ public class CharacterGrowth : MonoBehaviour
 
                 UpdateGrowth(growthStage);
                 growthPercentage = 0f;
+
+                AudioManager.instance.OnSimpleAction_SFXAudio("Grow");
             }
         }
 

@@ -152,5 +152,5 @@ MonoBehaviour:
   prefix: +
   text: {fileID: 7816754637821983936}
   speed: 1
-  lifetime: 1
+  lifetime: 1.5
   color_normal: {r: 0, g: 0.8396226, b: 0.00471708, a: 1}

@@ -210,13 +210,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5453408589583895882}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.6039216}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1905,6 +1905,8 @@ MonoBehaviour:
   highscoreText: {fileID: 5453408589786779163}
   personalBestText: {fileID: 5453408590811796907}
   airAsiaPointText: {fileID: 5453408591524482722}
+  restartButton: {fileID: 5453408591399236154}
+  exitButton: {fileID: 5453408590667382072}
 --- !u!1 &5453408590728831224
 GameObject:
   m_ObjectHideFlags: 0

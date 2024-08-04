@@ -14,7 +14,7 @@ public class FoodSpawnerSystem : MonoBehaviour
     [Header("Ticket")]
     [SerializeField] private TicketItem ticket;
 
-    private const int MAX_ACTIVE_FOOD_COUNT = 10;
+    private const int MAX_ACTIVE_FOOD_COUNT = 15;
     private const float PROBABILITY_NEGATIVE_FOOD = .3f;
     private const float PROBABILITY_TICKET = .1f;
 
@@ -119,15 +119,13 @@ public class FoodSpawnerSystem : MonoBehaviour
             targetFoodItem = GetRandomFoodItemFromList(positiveFoodPrefabs);
         }
 
-        if (occupiedPointsDict.ContainsKey(targetFoodItem)) return;
-
         CharacterGrowthItem spawned = poolDict[targetFoodItem].GetAvailable();
         spawned.gameObject.SetActive(true);
 
         Transform spawnPoint = GetRandomPointFromList(spawnPoints);
         spawned.transform.position = spawnPoint.position;
 
-        occupiedPointsDict.Add(spawned, spawnPoint);
+        //occupiedPointsDict.Add(spawned, spawnPoint);
     }
 
     private void SpawnTicket()
@@ -143,7 +141,7 @@ public class FoodSpawnerSystem : MonoBehaviour
 
     public static void OnFoodConsumed(CharacterGrowthItem food)
     {
-        occupiedPointsDict.Remove(food);
+        //occupiedPointsDict.Remove(food);
     }
 
     private bool TooManyActiveFoods()
@@ -177,7 +175,7 @@ public class FoodSpawnerSystem : MonoBehaviour
 public class Pool<T> where T : MonoBehaviour
 {
     public List<T> items = new();
-    public int size = 10;
+    public int size = 15;
 
     public T GetAvailable()
     {

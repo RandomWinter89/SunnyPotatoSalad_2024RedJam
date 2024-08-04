@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 
 public class PointsTallySystem : MonoBehaviour
@@ -13,16 +14,26 @@ public class PointsTallySystem : MonoBehaviour
     [SerializeField] private TMP_Text personalBestText;
     [SerializeField] private TMP_Text airAsiaPointText;
 
+    [SerializeField] private Button restartButton;
+    [SerializeField] private Button exitButton;
+
     private const float airAsiaPointMultiplier = 1.5f;
 
 
     private void OnDisable()
     {
         StopAllCoroutines();
+
+        restartButton.onClick.RemoveListener(Restart);
+        exitButton.onClick.RemoveListener(Exit);
     }
 
     private void OnEnable()
     {
+        restartButton.onClick.AddListener(Restart);
+        exitButton.onClick.AddListener(Exit);
+
+
         SetHighscore(scoreSystem.Highscore);
         SetPersonalBest(scoreSystem.PersonalBestScore);
 
@@ -83,5 +94,15 @@ public class PointsTallySystem : MonoBehaviour
     {
         PlayFabUtils.SetUserStatistic(PlayFabKeys.L_HIGHSCORE, scoreSystem.Highscore);
         PlayFabUtils.Save<PlayerData>(PlayFabKeys.P_PLAYER_DATA, DataManager.main.playerData);
+    }
+
+    private void Restart()
+    {
+        SceneLoader.instance.Load(Scene.Gameplay);
+    }
+
+    private void Exit()
+    {
+        SceneLoader.instance.Load(Scene.Menu);
     }
 }

@@ -46,6 +46,7 @@ public class ScoreSystem : MonoBehaviour
         Vector3 offset = new Vector3(0, -80, 0);
 
         PopupNumber.Create(PopupType.AddScore, _currentScorePoint.transform.position + offset , _value, _currentScorePoint.transform);
+        AudioManager.instance.OnSimpleAction_SFXAudio("AddScore");
     }
 
     public void DecrementScore(int _value)
@@ -57,6 +58,7 @@ public class ScoreSystem : MonoBehaviour
         Vector3 offset = new Vector3(0, -80, 0);
 
         PopupNumber.Create(PopupType.MinusScore, _currentScorePoint.transform.position + offset, _value, _currentScorePoint.transform);
+        AudioManager.instance.OnSimpleAction_SFXAudio("MinusScore");
     }
 
     private void UpdateScorePoint()
