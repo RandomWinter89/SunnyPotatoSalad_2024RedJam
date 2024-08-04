@@ -132,10 +132,10 @@ TextureImporter:
       name: Ogu_Back_Walk_SpriteSheet_0
       rect:
         serializedVersion: 2
-        x: 100
-        y: 1065
-        width: 330
-        height: 449
+        x: 0
+        y: 1024
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,10 +153,10 @@ TextureImporter:
       name: Ogu_Back_Walk_SpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 612
-        y: 1065
-        width: 330
-        height: 449
+        x: 512
+        y: 1024
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,10 +174,10 @@ TextureImporter:
       name: Ogu_Back_Walk_SpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 100
-        y: 543
-        width: 312
-        height: 450
+        x: 0
+        y: 512
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,10 +195,10 @@ TextureImporter:
       name: Ogu_Back_Walk_SpriteSheet_3
       rect:
         serializedVersion: 2
-        x: 583
-        y: 553
-        width: 341
-        height: 449
+        x: 512
+        y: 512
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,10 +216,10 @@ TextureImporter:
       name: Ogu_Back_Walk_SpriteSheet_4
       rect:
         serializedVersion: 2
-        x: 71
-        y: 41
-        width: 341
-        height: 449
+        x: 0
+        y: 0
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,10 +237,10 @@ TextureImporter:
       name: Ogu_Back_Walk_SpriteSheet_5
       rect:
         serializedVersion: 2
-        x: 612
-        y: 31
-        width: 312
-        height: 450
+        x: 512
+        y: 0
+        width: 512
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
