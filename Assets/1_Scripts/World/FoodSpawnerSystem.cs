@@ -108,6 +108,8 @@ public class FoodSpawnerSystem : MonoBehaviour
         // Determine if we should spawn a negative food item
         bool spawnNegativeFood = Random.value < PROBABILITY_NEGATIVE_FOOD;
 
+
+
         CharacterGrowthItem targetFoodItem;
         if (spawnNegativeFood)
         {
@@ -122,7 +124,9 @@ public class FoodSpawnerSystem : MonoBehaviour
         CharacterGrowthItem spawned = poolDict[targetFoodItem].GetAvailable();
         spawned.gameObject.SetActive(true);
 
-        Transform spawnPoint = GetRandomPointFromList(spawnPoints);
+
+        List<Transform> nearestPoints = GetSpawnPointsNearPlayer();
+        Transform spawnPoint = GetRandomPointFromList(nearestPoints);
         spawned.transform.position = spawnPoint.position;
 
         //occupiedPointsDict.Add(spawned, spawnPoint);
@@ -168,6 +172,20 @@ public class FoodSpawnerSystem : MonoBehaviour
     {
         int index = Random.Range(0, list.Count);
         return list[index];
+    }
+
+    private List<Transform> GetSpawnPointsNearPlayer()
+    {
+        List<Transform> points = new();
+
+        foreach(Transform point in spawnPoints)
+        {
+            if(Vector3.Distance(point.position, player.transform.position) < 50)
+            {
+                points.Add(point);
+            }
+        }
+        return points;
     }
 }
 
