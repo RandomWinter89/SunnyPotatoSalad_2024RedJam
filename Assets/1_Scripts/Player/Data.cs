@@ -53,3 +53,10 @@ public class Currency
     public int ticketCount;
     public int airAsiaPoint;
 }
+
+[Serializable]
+public class ReferralCode
+{
+    public string _id;
+    public int count;
+}
