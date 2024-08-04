@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using PlayFab;
+using PlayFab.ClientModels;
 using TMPro;
 
 public class PlayerMainUI : MonoBehaviour
@@ -9,8 +12,14 @@ public class PlayerMainUI : MonoBehaviour
     [SerializeField] TMP_Text airAsiaPointsText;
     [SerializeField] TMP_Text ticketText;
 
+    [SerializeField] Button startGameBtn;
+    [SerializeField] Button logoutBtn;
+
     private void Awake()
     {
+        startGameBtn.onClick.AddListener(StartGame);
+        logoutBtn.onClick.AddListener(Logout);
+
         RepaintUI();
     }
 
@@ -40,6 +49,26 @@ public class PlayerMainUI : MonoBehaviour
     public void Logout()
     {
         LoginManager.ClearLoginDetails();
+        SceneLoader.instance.Load(Scene.Login);
+    }
+
+    private void StartGame()
+    {
+        var data = DataManager.main;
+
+        if (data.playerData.Currency.ticketCount <= 0)
+        {
+            PromptManager.Prompt("Ticket Finished", "You do not have any ticket left");
+            return;
+        }
+
+        SceneLoader.instance.Load(Scene.Gameplay);
+    }
+
+    private void Logout()
+    {
+        PlayFabClientAPI.ForgetAllCredentials();
+        LoginManager.ForgetAllCredentials();
         SceneLoader.instance.Load(Scene.Login);
     }
 }

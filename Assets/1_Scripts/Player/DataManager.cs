@@ -48,9 +48,12 @@ public class DataManager : MonoBehaviour
         }, null, false);
     }
 
+    [SerializeField]
+    ReferralCode referral;
+
     [NaughtyAttributes.Button]
     private void Test_Push_Leaderboard_Statistic()
     {
-        PlayFabUtils.SetUserStatistic(L_HIGHSCORE, 100);
+        
     }
 }

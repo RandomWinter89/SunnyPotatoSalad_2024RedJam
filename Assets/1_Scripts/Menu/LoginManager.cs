@@ -49,7 +49,7 @@ public class LoginManager : MonoBehaviour
         SceneLoader.instance.Load(Scene.Menu, DataManager.main.LoadPlayerDataRoutine());
     }
 
-    public static void ClearLoginDetails()
+    public static void ForgetAllCredentials()
     {
         PlayerPrefs.DeleteKey(EMAIL);
         PlayerPrefs.DeleteKey(PASSWORD);
