@@ -20,7 +20,10 @@ public class SpriteSortOrderController : MonoBehaviour
             spriteRenderer.sortingOrder = ((int)dependentSpriteRenderer.transform.position.z - 1) * -1;
             return;
         }
-
-        spriteRenderer.sortingOrder = ((int) transform.position.z) * -1;
+        else
+        {
+            spriteRenderer.sortingOrder = ((int)transform.position.z) * -1;
+        }
+    
     }
 }
