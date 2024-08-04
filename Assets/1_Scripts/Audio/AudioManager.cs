@@ -31,7 +31,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        //Background Music
+        OnAction_MusicAudio("MainMenu", true);
     }
 
     #region Play and Stop
