@@ -3,7 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEditor.VersionControl;
+
+[System.Serializable]
+public class MongoResult
+{
+    public bool success;
+    public string message;
+    public string error;
+}
 
 public class ReferralManager : MonoBehaviour
 {
@@ -42,6 +49,7 @@ public class ReferralManager : MonoBehaviour
         }
     }
 
+    [NaughtyAttributes.Button]
     private void OwnerClaimReward()
     {
         int reward = Referral.count * 2;
@@ -49,6 +57,7 @@ public class ReferralManager : MonoBehaviour
         Referral.count = 0;
 
         PromptManager.Prompt("Referral Claimed", $"You had claimed {reward} tickets!");
+        StartCoroutine(MongoUtils.UpdateData("Referral", Referral._id, Referral));
     }
 
     private void ClientClaimReward()
@@ -61,16 +70,21 @@ public class ReferralManager : MonoBehaviour
     {
         string code = referralCodeInput.text;
 
-        if (string.IsNullOrEmpty(referralCodeInput.text))
+        if (string.IsNullOrEmpty(code))
         {
             PromptManager.Prompt("Failed Apply Code", "The code is empty, please enter you frens code and apply.");
             return;
         }
+        else if (code == Referral.code)
+        {
+            PromptManager.Prompt("Failed Apply Code", "You cannnot apply your own code");
+            return;
+        }
 
         StartCoroutine(MongoUtils.PostReferral(code,
-            message =>
+            result =>
             {
-                if (message == "success")
+                if (result.success)
                 {
                     mainPanel.SetActive(false);
                     subPanel.SetActive(false);
@@ -78,8 +92,20 @@ public class ReferralManager : MonoBehaviour
                 }
                 else
                 {
-                    PromptManager.Prompt("Failed Apply Code", $"Failed to apply code due to \n\n{message}, \n\nplease report to developer.");
+                    PromptManager.Prompt("Failed Apply Code", $"Failed to apply code due to \n\n{result.message}, \n\nplease report to developer.");
                 }
             }));
+    }
+
+    [NaughtyAttributes.Button]
+    private void test()
+    {
+        StartCoroutine(MongoUtils.PostReferral("fail", m => { Debug.Log(m.success); }));
+    }
+
+    [NaughtyAttributes.Button]
+    private void test2()
+    {
+        StartCoroutine(MongoUtils.PostReferral("02F2-F194-1C", m => { Debug.Log(m.success); }));
     }
 }

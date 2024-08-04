@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 1595526342738353246}
   - component: {fileID: 8800959920318167977}
   - component: {fileID: 121823218480026769}
+  - component: {fileID: 3981341151705074152}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -183,9 +184,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingLayerID: -371747225
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 380769ec43ab94e8ab3ae39996f64ec0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -210,6 +211,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleThreshold: 45
+--- !u!114 &3981341151705074152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595526342738353242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09232bab65b30493c8e836359f8e0b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dependentSpriteRenderer: {fileID: 0}
 --- !u!1 &8459313551298164632
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,6 +234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6738223155639501058}
   - component: {fileID: 2573915391834955597}
+  - component: {fileID: 2896633896933008841}
   m_Layer: 0
   m_Name: Shadow (1)
   m_TagString: Untagged
@@ -280,9 +295,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: -371747225
+  m_SortingLayer: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b,
     type: 3}
   m_Color: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 1}
@@ -295,3 +310,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2896633896933008841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8459313551298164632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09232bab65b30493c8e836359f8e0b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dependentSpriteRenderer: {fileID: 8800959920318167977}

@@ -28,6 +28,22 @@ public class DataManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void OnEnable()
+    {
+        PlayerData.OnPlayerInfoUpdated += UpdatePlayerData;
+    }
+
+    private void OnDisable()
+    {
+        PlayerData.OnPlayerInfoUpdated -= UpdatePlayerData;
+    }
+
+    private void UpdatePlayerData()
+    {
+        //DataQueue.Queue(PlayFabUtils.Save<PlayerData>(P_PLAYER_DATA, playerData));
+        PlayFabUtils.Save<PlayerData>(P_PLAYER_DATA, playerData);
+    }
+
     public IEnumerator LoadPlayerDataRoutine()
     {
         yield return PlayFabUtils.LoadData<PlayerData>(P_PLAYER_DATA,
@@ -60,10 +76,38 @@ public class DataManager : MonoBehaviour
                     count = 0
                 };
 
-                StartCoroutine(MongoUtils.PostData("Referral", data));
+                StartCoroutine(MongoUtils.InsertData("Referral", data));
             }
 
             referral = data;
         });
     }
+
+
+    [NaughtyAttributes.Button]
+    private void test_insert()
+    {
+        var data = new ReferralCode()
+        {
+            _id = DataManager.main.playFabID,
+            code = PromoCodeGenerator.GeneratePromoCode(DataManager.main.playFabID),
+            count = 0
+        };
+
+        StartCoroutine(MongoUtils.InsertData("Referral", data));
+    }
+
+    [NaughtyAttributes.Button]
+    private void test_update()
+    {
+        var data = new ReferralCode()
+        {
+            _id = DataManager.main.playFabID,
+            code = PromoCodeGenerator.GeneratePromoCode(DataManager.main.playFabID),
+            count = 0
+        };
+
+        StartCoroutine(MongoUtils.UpdateData("Referral", data._id, data));
+    }
+
 }

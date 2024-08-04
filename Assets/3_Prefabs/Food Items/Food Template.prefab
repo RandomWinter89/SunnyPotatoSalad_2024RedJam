@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2074134186564639115}
   - component: {fileID: 8128987053625769596}
   - component: {fileID: 818653883650462020}
+  - component: {fileID: 3940696276747465147}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -98,6 +99,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleThreshold: 45
+--- !u!114 &3940696276747465147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074134186564639119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09232bab65b30493c8e836359f8e0b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dependentSpriteRenderer: {fileID: 0}
 --- !u!1 &2074134186642238218
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,6 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac057176760c147408c4334a3e38c33b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isNegative: 0
   scoreItem: {fileID: 9132160780363405576}
   rb: {fileID: 7833637792270102265}
   dropForceMinMax: {x: 5, y: 8}
@@ -242,6 +257,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6300050507107599575}
   - component: {fileID: 2978250056301599384}
+  - component: {fileID: 4947342851693941523}
   m_Layer: 0
   m_Name: Shadow (1)
   m_TagString: Untagged
@@ -317,3 +333,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4947342851693941523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9189938190135931469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09232bab65b30493c8e836359f8e0b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dependentSpriteRenderer: {fileID: 8128987053625769596}
